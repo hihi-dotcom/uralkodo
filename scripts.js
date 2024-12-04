@@ -1,4 +1,44 @@
+const tomb = [
+    {
+        Uralkodo: `Uralkodó`,
+        Esemeny: `Esemény`,
+        Evszam: `Évszám`,
+    },
+    {
+        Uralkodo_name: `I. István`,
+        esemeny_istvan: `Koronázás`,
+        evszam_istvan: `1000`
 
+       
+    },
+    {
+        esemeny2_istvan: `Pannonhalmi apátság megalapítása`,
+        evszam2_istvan: `1001`
+    },
+    {
+        Uralkodo_name: `IV. Béla`,
+        esemeny_bela: `tatárjárás`,
+        evszam_bela: `1241-1242`
+    },
+    {
+        Uralkodo_name: `Mátyás király`,
+        esemeny_matyas: `Bécs elfoglalása`,
+        evszam_matyas: `1485`
+    },
+    {
+        esemeny2_matyas: `Kenyérmezei csata`,
+        evszam2_matyas: `1479`
+    },
+    {
+        Uralkodo_name: `II. Rákoczi Ferenc`,
+        esemeny_rakoczi: `A szabadságharc kezdete`,
+        evszam_rakoczi: `1703`,
+    },
+    {
+        esemeny2_rakoczi: `A szabadságharc vége`,
+        evszam2_rakoczi: `1711`
+    }
+];
 
 
 
