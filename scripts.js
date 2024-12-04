@@ -26,10 +26,14 @@ const col3 = document.createElement(`col`);//létrehozom az utolsó col elemet, 
 colgroup.appendChild(col3);//hozzáfűzöm ezt is a colgroup elemhez
 col3.classList.add(`colored_column`); //ezt is ellátom a megfelelő osztálykijelölővel, hogy a stílus a feladatnak megfelelően megváltozzon
 
-//Változók bevezetése a fejrészében
-const fejresz1label = `Uralkodó`; //a fejléc első cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const fejresz2label = `Esemény`;//a fejléc második cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const fejresz3label = `Évszám`;//a fejléc harmadik cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
+
+
+//összetett objektumok bevezetése
+const fejsorObj = { //fejsorObj objektum létrehozása
+    fejresz1: `Uralkodó`, //fejsorObj fejresz1 tulajdonságának értékadás
+    fejresz2: `Esemény`,//fejsorObj fejresz2 tulajdonságának értékadás
+    fejresz3: `Évszám`,//fejsorObj fejresz3 tulajdonságának értékadás
+};
 
 
 
@@ -41,23 +45,27 @@ tablafej.appendChild(fejsor);//ezt az elemet hozzáfűzöm a fejléchez
 
 const fejresz1 = document.createElement(`th`);//létrehozok egy th elemet ami a táblázat fejlécének egy cellája lesz 
 fejsor.appendChild(fejresz1);// ezt hozzáfűzöm a táblázat fejlécének sorához
-fejresz1.innerHTML = fejresz1label;// a th tagek közötti értéknek megadom az uralkodót
-
+fejresz1.innerHTML = fejsorObj.fejresz1;// a cella tartalma a fejsorObj fejresz1 tulajdonságának értéke lesz.
 const fejresz2 = document.createElement(`th`);//létrehozok egy th elemet ami a táblázat fejlécének egy cellája lesz.
 fejsor.appendChild(fejresz2);// ezt hozzáfűzöm a táblázat fejlécének sorához
-fejresz2.innerHTML = fejresz2label;// a th tagek közötti értéknek megadom az eseményt
+fejresz2.innerHTML = fejsorObj.fejresz2;// a cella tartalma a fejsorObj fejresz2 tulajdonságának értéke lesz.
 
 
 const fejresz3 = document.createElement(`th`);//létrehozok egy th elemet ami a táblázat fejlécének egy cellája lesz.
 fejsor.appendChild(fejresz3);// ezt hozzáfűzöm a táblázat fejlécének sorához
-fejresz3.innerHTML = fejresz3label;// a th tagek közötti értéknek megadom az évszámot
+fejresz3.innerHTML = fejsorObj.fejresz3;// a cella tartalma a fejsorObj fejresz3 tulajdonságának értéke lesz.
 
 
-//Változók bevezetése a táblázat törzsében
 
-const tabla1sorelemlabel = `I. István`;//a táblázat első sorának első cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla1sorelem2label =  `Koronázás`;//a táblázat első sorának második cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla1sorelem3label = `1000`;//a táblázat első sorának harmadik cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
+
+
+
+//Az első sor összetett objektuma
+const elsosorObj = {//elsosorObj objektum létrehozása
+    tabla1sorcella: `I. István`,//elsosorObj tabla1sorcella tulajdonságának értékadás
+    tabla1sorcella1: `Koronázás`,//elsosorObj tabla1sorcella1 tulajdonságának értékadás
+    tabla1sorcella2: `1000`,//elsosorObj tabla1sorcella2 tulajdonságának értékadás
+};
 
 // 1. sora a táblázatnak 
 const tabla1sor = document.createElement(`tr`);//létrehozok egy tableRow elementet, a táblázatom első sorának
@@ -66,22 +74,26 @@ tablatest.appendChild(tabla1sor);// ezt az új sort rögtön hozzáfűzöm a tá
 const tabla1sorelem = document.createElement(`td`);//létrehozok egy td elemet , ami az első sor első cellája lesz.
 tabla1sor.appendChild(tabla1sorelem); //ezt hozzáfűzöm az első sorhoz
 tabla1sorelem.rowSpan = 2; //megadom neki a rowspan értékének a kettőt
-tabla1sorelem.innerHTML = tabla1sorelemlabel; // a első sor td tagjei közül megadom neki az István értéket
+tabla1sorelem.innerHTML = elsosorObj.tabla1sorcella; // a cella tartalma az elsosorObj tabla1sorcella tulajdonságának értéke lesz.
+
 
 const tabla1sorelem2 = document.createElement(`td`);//létrehozok egy td elemet , ami az első sor második cellája lesz.
 tabla1sor.appendChild(tabla1sorelem2);//ezt hozzáfűzöm az első sorhoz
-tabla1sorelem2.innerHTML = tabla1sorelem2label;// a első sor td tagjei közül megadom neki a Koronázás értéket
+tabla1sorelem2.innerHTML = elsosorObj.tabla1sorcella1;// a cella tartalma az elsosorObj tabla1sorcella1 tulajdonságának értéke lesz.
 
 const tabla1sorelem3 = document.createElement(`td`);//létrehozok egy td elemet , ami az első sor harmadik cellája lesz.
 tabla1sor.appendChild(tabla1sorelem3);//ezt hozzáfűzöm az első sorhoz
-tabla1sorelem3.innerHTML = tabla1sorelem3label;// a első sor td tagjei közül megadom neki az 1000 értéket
+tabla1sorelem3.innerHTML = elsosorObj.tabla1sorcella2;// a cella tartalma az elsosorObj tabla1sorcella2 tulajdonságának értéke lesz.
 
 
 
-//Változók bevezetése a 2. sorban
-const tabla2sorelem1label = `Pannonhalmi apátság megalapítása`;//a táblázat második sorának első cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla2sorelem2label = `1001`; //a táblázat második sorának második cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
 
+
+// a második sor öszetett objketuma
+const masodiksorObj = {//masodiksorObj objektum létrehozása
+    tabla2sorcella: `Pannonhalmi apátság megalapítása`,//masodiksorObj tabla2sorcella tulajdonságának értéket adunk
+    tabla2sorcella1: `1001`,//masodiksorObj tabla2sorcella1 tulajdonságának értéket adunk
+};
 
 
 //1. és 2. összekapcsolodó sor
@@ -92,20 +104,20 @@ tablatest.appendChild(tabla2sor);// ezt az új sort rögtön hozzáfűzöm a tá
 
 const tabla2sorelem1 = document.createElement(`td`);//létrehozok egy td elemet , ami a második sor első cellája lesz.
 tabla2sor.appendChild(tabla2sorelem1);//ezt hozzáfűzöm a második sorhoz
-tabla2sorelem1.innerHTML = tabla2sorelem1label;//megadom értéknek a Pannonhalmi .....
+tabla2sorelem1.innerHTML = masodiksorObj.tabla2sorcella;// a cella tartalma a masodiksorObj tabla2sorcella tulajdonságának értéke lesz.
 
 
 const tabla2sorelem2 = document.createElement(`td`);//létrehozok egy td elemet , ami a második sor második cellája lesz.
 tabla2sor.appendChild(tabla2sorelem2);//ezt hozzáfűzöm a második sorhoz
-tabla2sorelem2.innerHTML = tabla2sorelem2label; //megadom értéknek az 1001-et
+tabla2sorelem2.innerHTML = masodiksorObj.tabla2sorcella1;// a cella tartalma a masodiksorObj tabla2sorcella1 tulajdonságának értéke lesz.
 
 
-//Változók bevezetése a 3. sorban
-const tabla3sorelem1label = `IV. Béla`;//a táblázat harmadik sorának első cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla3sorelem2label = `tatárjárás`;//a táblázat harmadik sorának második cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla3sorelem3label = `1241-1242`;//a táblázat harmadik sorának harmadik cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-
-
+// a harmadik sor összetett objektuma
+const harmadiksorObj = {//a harmadiksorObj objektum létrehozása
+    tabla3sorcella: `IV. Béla`,//harmadiksorObj tabla3sorcella tulajdonságának értéket adunk
+    tabla3sorcella1: `tatárjárás`,//harmadiksorObj tabla3sorcella1 tulajdonságának értéket adunk
+    tabla3sorcella2: `1241-1242`,//harmadiksorObj tabla3sorcella2 tulajdonságának értéket adunk
+};
 
 //3.sor
 const tabla3sor = document.createElement(`tr`);//létrehozok egy tableRow elementet, a táblázatom harmadik sorának
@@ -114,24 +126,26 @@ tablatest.appendChild(tabla3sor);// ezt az új sort hozzáfűzöm a táblázatom
 
 const tabla3sorelem1 = document.createElement(`td`);//létrehozok egy td elemet , ami a harmadik sor első cellája lesz.
 tabla3sor.appendChild(tabla3sorelem1);//ezt az újonnan létrehozott elemet hozzáfűzöm a harmadik sorhoz
-tabla3sorelem1.innerHTML = tabla3sorelem1label; // megadom értéknek: IV. Béla
+tabla3sorelem1.innerHTML = harmadiksorObj.tabla3sorcella; // a cella tartalma a harmadiksorObj tabla3sorcella tulajdonságának értéke lesz.
 
 const tabla3sorelem2 = document.createElement(`td`);//létrehozok egy td elemet , ami a harmadik sor második cellája lesz.
 tabla3sor.appendChild(tabla3sorelem2);//ezt az újonnan létrehozott elemet hozzáfűzöm a harmadik sorhoz
-tabla3sorelem2.innerHTML = tabla3sorelem2label;// megadom neki értékként a tatárjárást
+tabla3sorelem2.innerHTML = harmadiksorObj.tabla3sorcella1;// a cella tartalma a harmadiksorObj tabla3sorcella1 tulajdonságának értékével lesz feltöltve.
 
 const tabla3sorelem3 = document.createElement(`td`);//létrehozok egy td elemet , ami a harmadik sor harmadik cellája lesz.
 tabla3sor.appendChild(tabla3sorelem3);//ezt az újonnan létrehozott elemet hozzáfűzöm a harmadik sorhoz
-tabla3sorelem3.innerHTML = tabla3sorelem3label;// megadom neki értékként az 1241-1242-t
+tabla3sorelem3.innerHTML = harmadiksorObj.tabla3sorcella2;// a cella tartalma a harmadiksorObj tabla3sorcella2 tulajdonságának értékével lesz feltöltve.
 
 
 
-//Változók bevezetése a 4. sorban
-const tabla4sorelem1label = `Mátyás király`;//a táblázat negyedik sorának első cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla4sorelem2label = `Bécs elfoglalása`;//a táblázat negyedik sorának második cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla4sorelem3label = `1485`;//a táblázat negyedik sorának harmadik cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
 
+//a negyedik sor összetett objektuma
+const negyediksorObj = {// a negyediksorObj objektum létrehozása
+    tabla4sorcella: `Mátyás király`,//negyediksorObj tabla4sorcella tulajdonságának értéket adunk
+    tabla4sorcella1: `Bécs elfoglalása`,//negyediksorObj tabla4sorcella1 tulajdonságának értéket adunk
+    tabla4sorcella2: `1485`,//negyediksorObj tabla4sorcella2 tulajdonságának értéket adunk
 
+};
 
 //4. sor
 const tabla4sor = document.createElement(`tr`);//létrehozok egy tableRow elementet, a táblázatom negyedik sorának
@@ -140,22 +154,25 @@ tablatest.appendChild(tabla4sor);// ezt az új sort hozzáfűzöm a táblázatom
 const tabla4sorelem1 = document.createElement(`td`);//létrehozok egy td elemet , ami a negyedik sor első cellája lesz.
 tabla4sor.appendChild(tabla4sorelem1);//ezt hozzáfűzöm a negyedik sorhoz
 tabla4sorelem1.rowSpan = 2;// az elem rowspan tulajdonságának értékül adtam a kettőt
-tabla4sorelem1.innerHTML = tabla4sorelem1label; // az elemnek értékül adtam a Mátyás királyt
+tabla4sorelem1.innerHTML = negyediksorObj.tabla4sorcella; // a cella tartalma a negyediksorObj tabla4sorcella tulajdonságának értékével lesz feltöltve.
  
 const tabla4sorelem2 = document.createElement(`td`);//létrehozok egy td elemet , ami a negyedik sor második cellája lesz.
 tabla4sor.appendChild(tabla4sorelem2);// ezt az elemet hozzáadom a sorhoz
-tabla4sorelem2.innerHTML = tabla4sorelem2label;// az elemnek értékül adtam : Bécs elfoglalása
+tabla4sorelem2.innerHTML = negyediksorObj.tabla4sorcella1;// a cella tartalma a negyediksorObj tabla4sorcella1 tulajdonságának értékével lesz feltöltve.
 
 const tabla4sorelem3 = document.createElement(`td`);//létrehozok egy td elemet , ami a negyedik sor harmadik cellája lesz.
 tabla4sor.appendChild(tabla4sorelem3);//ezt az elemet hozzáadom a sorhoz
-tabla4sorelem3.innerHTML = tabla4sorelem3label;// az elemnek értékül adtam: 1485
+tabla4sorelem3.innerHTML = negyediksorObj.tabla4sorcella2;// a cella tartalma a negyediksorObj tabla4sorcella2 tulajdonságának értékével lesz feltöltve.
 
 
 
-//Változók bevezetése az 5. sorban
 
-const tabla5sorelem1label = `Kenyérmezei csata`;//a táblázat ötödik sorának első cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla5sorelem2label = `1479`;//a táblázat ötödik sorának második cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
+//az ötödik sor összetett objektuma
+const otsorObj = {// az otsorObj objektum létrehozása
+    tabla5sorcella: `Kenyérmezei csata`,//otodiksorObj tabla5sorcella tulajdonságának értéket adunk
+    tabla5sorcella1: `1479`,//otodiksorObj tabla5sorcella1 tulajdonságának értéket adunk
+};
+
 
 //4-5. összekapcsolódó sor
 //Mivel a 4. sor első elemének rowspan tulajdonságának kettőt adtuk értékül a 4. és az 5. sor összefügg
@@ -164,19 +181,21 @@ tablatest.appendChild(tabla5sor);//ezt is hozzáfűzöm a táblázathoz
 
 const tabla5sorelem1 = document.createElement(`td`);//létrehozok egy td elemet , ami a ötödik sor első cellája lesz.
 tabla5sor.appendChild(tabla5sorelem1);//hozzáfűzöm az ötödik sorhoz
-tabla5sorelem1.innerHTML = tabla5sorelem1label; //értékül adom neki: Kenyérmezei csata
+tabla5sorelem1.innerHTML = otsorObj.tabla5sorcella; // a cella tartalma az otsorObj tabla5sorcella tulajdonságának értékével lesz feltöltve.
 
 
 const tabla5sorelem2 = document.createElement(`td`);//létrehozok egy td elemet , ami a ötödik sor második cellája lesz.
 tabla5sor.appendChild(tabla5sorelem2);//hozzáfűzöm az ötödik sorhoz
-tabla5sorelem2.innerHTML = tabla5sorelem2label;//értékül adom neki az 1479-et
-
-//További változók bevezetése a 6. sorban is
-const tabla6sorelem1label = `II. Rákóczi Ferenc`; //a táblázat hatodik sorának első cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla6sorelem2label = `A szabadságharc kezdete`; //a táblázat hatodik sorának második cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla6sorelem3label = `1703`;//a táblázat hatodik sorának harmadik cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
+tabla5sorelem2.innerHTML = otsorObj.tabla5sorcella1;// a cella tartalma az otsorObj tabla5sorcella1 tulajdonságának értékével lesz feltöltve.
 
 
+
+
+const hatodiksorObj = {//a hatodiksorObj objektum létrehozása
+    tabla6sorcella: `II. Rákoczi Ferenc`, //hatodiksorObj tabla6sorcella tulajdonságának értéket adunk
+    tabla6sorcella1: `A szabadságharc kezdete`,//hatodiksorObj tabla6sorcella1 tulajdonságának értéket adunk
+    tabla6sorcella2: `1703`,//hatodiksorObj tabla6sorcella2 tulajdonságának értéket adunk
+};
 
 
 //6.sor
@@ -186,20 +205,24 @@ tablatest.appendChild(tabla6sor);//hozzáfűzöm a táblázathoz
 const tabla6sorelem1 = document.createElement(`td`)//létrehozok egy td elemet , ami a hatodik sor első cellája lesz.
 tabla6sor.appendChild(tabla6sorelem1);// az újonnan létrehozott elemet hozzáfűzöm a hatodik sorhoz
 tabla6sorelem1.rowSpan = 2; // a 6. sor első elemének rowspan tulajdonságának megadjuk a 2 értéket
-tabla6sorelem1.innerHTML = tabla6sorelem1label; // az elemnek értékül adjuk: II. Rákóczi Ferenc
+tabla6sorelem1.innerHTML = hatodiksorObj.tabla6sorcella; // a cella a hatodiksorObj tabla6sorcella tulajdonságának értékével lesz feltöltve.
 
 const tabla6sorelem2 = document.createElement(`td`);//létrehozok egy td elemet , ami a hatodik sor második cellája lesz.
 tabla6sor.appendChild(tabla6sorelem2);// az újonnan létrehozott elemet hozzáfűzöm a hatodik sorhoz
-tabla6sorelem2.innerHTML = tabla6sorelem2label; // az elemnek értékül adjuk, A szabadságharc kezdete
+tabla6sorelem2.innerHTML = hatodiksorObj.tabla6sorcella1; // a cella a hatodiksorObj tabla6sorcella1 tulajdonságának értékével lesz feltöltve.
 
 const tabla6sorelem3 = document.createElement(`td`);//létrehozok egy td elemet , ami a hatodik sor harmadik cellája lesz.
 tabla6sor.appendChild(tabla6sorelem3);// az újonnan létrehozott elemet hozzáfűzöm a hatodik sorhoz
-tabla6sorelem3.innerHTML = tabla6sorelem3label;// az elemnek értékül adjuk, 1703
+tabla6sorelem3.innerHTML = hatodiksorObj.tabla6sorcella2;// a cella a hatodiksorObj tabla6sorcella2 tulajdonságának értékével lesz feltöltve.
 
 
-//Változók bevezetése a 7. sorban
-const tabla7sorelem1label = `A szabadságharc vége`; //a táblázat hetedik sorának első cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
-const tabla7sorelem2label = `1711`; //a táblázat hetedik sorának második cellájának értéke, ami az elem innerhtml-jével lesz egyenlő
+
+
+const hetediksorObj = {// a hetediksorObj objektum deklarálása
+    tabla7sorcella: `A szabadságharc vége`,//hetediksorObj tabla7sorcella tulajdonságának értéket adunk
+    tabla7sorcella1: `1711`,//hetediksorObj tabla7sorcella1 tulajdonságának értéket adunk
+}
+
 
 
 //6-7. összekapcsolódó sorok
@@ -210,11 +233,10 @@ tablatest.appendChild(tabla7sor);//hozzáfűzöm utolsó sorként a táblázatho
 
 const tabla7sorelem1 = document.createElement(`td`);//létrehozok egy td elemet , ami a hetedik sor első cellája lesz.
 tabla7sor.appendChild(tabla7sorelem1);//hozzáfűzöm az elemet az utolsó sorhoz
-tabla7sorelem1.innerHTML  = tabla7sorelem1label;//értékül adom neki: A szabadságharc vége
-
+tabla7sorelem1.innerHTML  = hetediksorObj.tabla7sorcella;// a cella a hetediksorObj tabla7sorcella tulajdonságának értékével lesz feltöltve.
 
 const tabla7sorelem2 = document.createElement(`td`);//létrehozok egy td elemet , ami a hetedik sor második cellája lesz.
 tabla7sor.appendChild(tabla7sorelem2);//hozzáfűzöm az elemet az utolsó sorhoz
-tabla7sorelem2.innerHTML = tabla7sorelem2label;//értékül adom neki: 1703
+tabla7sorelem2.innerHTML = hetediksorObj.tabla7sorcella1;// a cella a hetediksorObj tabla7sorcella1 tulajdonságának értékével lesz feltöltve.
 
 
