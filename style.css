@@ -1,3 +1,7 @@
-col:nth-child(odd){
+.colored_column{
     background-color: brown;
+}
+table, tbody, tr, td, thead, th{
+    border: 2px solid black;
+    border-collapse: collapse;
 }
