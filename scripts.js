@@ -78,39 +78,42 @@ const fejcella3 = document.createElement(`th`);//létrehozok egy th elemet ami a
 fejrow.appendChild(fejcella3);//hozzáfűzöm ezt a th elemet a fejléc sorához
 fejcella3.innerHTML = fejcellak.fejcella3label; // a cella tartalma a fejcellak objektum  fejcella3label tulajdonságának értéke lesz
 
+function renderTabla(){// definiálom a renderTabla függvényt
+    for(const jelenElem of array){//végig iterálunk a tömbön egy növekményes for ciklussal
+        //a táblázat törzsének sorai
+        const sor = document.createElement(`tr`);//létrehozok egy tableRow elemet(HTMLelement)
+        tablatest.appendChild(sor);//Hozzáfűzöm ezt a sort a táblázatom törzséhez.
 
-for(const jelenElem of array){//végig iterálunk a tömbön egy növekményes for ciklussal
-    //a táblázat törzsének sorai
-    const sor = document.createElement(`tr`);//létrehozok egy tableRow elemet(HTMLelement)
-    tablatest.appendChild(sor);//Hozzáfűzöm ezt a sort a táblázatom törzséhez.
+        const sorUralkodoName  = document.createElement(`td`);//deklarálok egy td elemet(HTMLelement)
+        sorUralkodoName.innerHTML  = jelenElem.Uralkodo_name;// a cella tartalma a jelenlegi elem Uralkodo_name tulajdonságának értéke lesz
+        sor.appendChild(sorUralkodoName);//Hozzáfűzöm a most deklarált td elemet a fentebb létrehozott sorhoz
 
-    const sorUralkodoName  = document.createElement(`td`);//deklarálok egy td elemet(HTMLelement)
-    sorUralkodoName.innerHTML  = jelenElem.Uralkodo_name;// a cella tartalma a jelenlegi elem Uralkodo_name tulajdonságának értéke lesz
-    sor.appendChild(sorUralkodoName);//Hozzáfűzöm a most deklarált td elemet a fentebb létrehozott sorhoz
+        const sorEsemeny  = document.createElement(`td`); //létrehozok ismét egy td elemet(HTMLelement)
+        sorEsemeny.innerHTML = jelenElem.esemeny;// a cella tartalma az éppen aktuális elem esemeny tulajdonságának értéke lesz
+        sor.appendChild(sorEsemeny);// Hozzáfűzöm ezt az elemet a korábban létrehozott soromhoz.
 
-    const sorEsemeny  = document.createElement(`td`); //létrehozok ismét egy td elemet(HTMLelement)
-    sorEsemeny.innerHTML = jelenElem.esemeny;// a cella tartalma az éppen aktuális elem esemeny tulajdonságának értéke lesz
-    sor.appendChild(sorEsemeny);// Hozzáfűzöm ezt az elemet a korábban létrehozott soromhoz.
+        
+        const  sorEvszam  = document.createElement(`td`);//létrehozok egy td elemet az evszamnak(HTMLelement)
+        sorEvszam.innerHTML = jelenElem.evszam;// a cella tartalma az éppen aktuális elem evszam tulajdonsága lesz
+        sor.appendChild(sorEvszam);// Rögtön hozzáfűzöm ezt az elemet a sorhoz.
 
-    
-    const  sorEvszam  = document.createElement(`td`);//létrehozok egy td elemet az evszamnak(HTMLelement)
-    sorEvszam.innerHTML = jelenElem.evszam;// a cella tartalma az éppen aktuális elem evszam tulajdonsága lesz
-    sor.appendChild(sorEvszam);// Rögtön hozzáfűzöm ezt az elemet a sorhoz.
-
-    if(jelenElem.esemeny2 !== undefined && jelenElem.evszam2 !== undefined){//ha az aktuális objektumnak nincs esemeny2 és evszam2 tulajdonsága akkor az elágazáson belüli kód fut le
-        sorUralkodoName.rowSpan = 2;// a táblázat első cellájának rowSpan tulajdonságát 2-re állítjuk
-        const sor2 = document.createElement(`tr`); // létrehozok még egy tableRow elementet a második eseménynek és évszámnak(HTMLelement)
-        tablatest.appendChild(sor2);//hozzáfűzöm ezt a sort a táblázatom törzséhez
-
-    
-        const sorEsemeny2 = document.createElement(`td`); //létrehozok egy td elemet a második eseménynek ami majd egy új sorba fog kerülni(HTMLelement)
-        sorEsemeny2.innerHTML = jelenElem.esemeny2;// a cella tartalma az éppen aktuális objektum esemeny2 tulajdonságának értéke lesz
-        sor2.appendChild(sorEsemeny2);//hozzáfűzöm ezt az elemet az újonnan deklarált soromhoz
-    
-        const sorEvszam2  =document.createElement(`td`);//létrehozok egy td elemet a második évszámnak ami majd az új sorba fog kerülni megint(HTMLelement)
-         sorEvszam2.innerHTML = jelenElem.evszam2;// a cella tartalma az éppen aktuális objektum evszam2 tulajdonságához rendelt érték lesz, ha van az objektumnak ilyen tulajdonsága.
-        sor2.appendChild(sorEvszam2);//hozzáfűzöm ezt az elemet az új soromhoz.
+        if(jelenElem.esemeny2 !== undefined && jelenElem.evszam2 !== undefined)
+        {//ha az aktuális objektumnak nincs esemeny2 és evszam2 tulajdonsága akkor az elágazáson belüli kód fut le
+            sorUralkodoName.rowSpan = 2;// a táblázat első cellájának rowSpan tulajdonságát 2-re állítjuk
+            const sor2 = document.createElement(`tr`); // létrehozok még egy tableRow elementet a második eseménynek és évszámnak(HTMLelement)
+            tablatest.appendChild(sor2);//hozzáfűzöm ezt a sort a táblázatom törzséhez
+            const sorEsemeny2 = document.createElement(`td`); //létrehozok egy td elemet a második eseménynek ami majd egy új sorba fog kerülni(HTMLelement)
+            sorEsemeny2.innerHTML = jelenElem.esemeny2;// a cella tartalma az éppen aktuális objektum esemeny2 tulajdonságának értéke lesz
+            sor2.appendChild(sorEsemeny2);//hozzáfűzöm ezt az elemet az újonnan deklarált soromhoz
+        
+            const sorEvszam2  =document.createElement(`td`);//létrehozok egy td elemet a második évszámnak ami majd az új sorba fog kerülni megint(HTMLelement)
+            sorEvszam2.innerHTML = jelenElem.evszam2;// a cella tartalma az éppen aktuális objektum evszam2 tulajdonságához rendelt érték lesz, ha van az objektumnak ilyen tulajdonsága.
+            sor2.appendChild(sorEvszam2);//hozzáfűzöm ezt az elemet az új soromhoz.
+        }
     }
+};
+
+renderTabla();//meghívom a renderTabla függvényt
 
 
   
@@ -123,4 +126,4 @@ for(const jelenElem of array){//végig iterálunk a tömbön egy növekményes f
 
 
 
-};
+
