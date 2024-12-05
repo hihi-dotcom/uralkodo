@@ -1,29 +1,29 @@
 const array = [
     { // az array tömb első elemének létrehozása
-        Uralkodo_name: `I. István`,//értéket adunk az array tömb első elemének Uralkodo_name tulajdonságának(objektum tulajdonság, aminek értéke string)
+        Uralkodo_name: `I. István`,//értéket adunk az array tömb első elemének Uralkodo_name tulajdonságának(objektum tulajdonság, aminek string értéket adunk)
         esemeny: `Koronázás`,//értéket adunk az array tömb első elemének esemeny tulajdonságának(objektum tulajdonság, aminek értéke string)
-        evszam: `1000`,//értéket adunk az array tömb első elemének evszam tulajdonságának  (objektum tulajdonság, aminek értéke string)
-        esemeny2: `Pannonhalmi apátság megalapítása`, //értéket adunk a tömbünk első elemének esemeny2 tulajdonságának(objektum tulajdonság, aminek értéke string)
-        evszam2: `1001`//értéket adunk a tömbünk első elemének evszam2 tulajdonságának (objektum tulajdonság, aminek értéke string)
+        evszam: `1000`,//értéket adunk az array tömb első elemének evszam tulajdonságának  (objektum tulajdonság, aminek string értéket adunk)
+        esemeny2: `Pannonhalmi apátság megalapítása`, //értéket adunk a tömbünk első elemének esemeny2 tulajdonságának(objektum tulajdonság, aminek string értéket adunk)
+        evszam2: `1001`//értéket adunk a tömbünk első elemének evszam2 tulajdonságának (objektum tulajdonság, aminek string értéket adunk)
     },
     {// az array tömb második elemének létrehozása
-        Uralkodo_name: `IV. Béla`,// array tömb második elemének Uralkodo_name tulajdonságának értéket adunk(objektum tulajdonság, aminek értéke string)
-        esemeny: `tatárjárás`,//az array tömbünk második elemének esemeny tulajdonságának értéket adunk(objektum tulajdonság, aminek értéke string)
-        evszam: `1241-1242`// a tömbünk második elemének evszam tulajdonságához értéket adunk(objektum tulajdonság, aminek értéke string)
+        Uralkodo_name: `IV. Béla`,// array tömb második elemének Uralkodo_name tulajdonságának értéket adunk(objektum tulajdonság, aminek string értéket adunk)
+        esemeny: `tatárjárás`,//az array tömbünk második elemének esemeny tulajdonságának értéket adunk(objektum tulajdonság, aminek string értéket adunk)
+        evszam: `1241-1242`// a tömbünk második elemének evszam tulajdonságához értéket adunk(objektum tulajdonság, aminek string értéket adunk)
     },
     {// az array tömb harmadik elemének deklarációja
-        Uralkodo_name: `Mátyás király`,// a tömbünk harmadik elemének Uralkodo_name tulajdonságához értéket rendelek(objektum tulajdonság, aminek értéke string)
-        esemeny: `Bécs elfoglalása`,// az arrayem harmadik elemének esemeny tulajdonságához értéket adok(objektum tulajdonság, aminek értéke string)
-        evszam: `1485`,// array tömb harmadik elemének evszam tulajdonságának értékadás(objektum tulajdonság, aminek értéke string)
-        esemeny2: `Kenyérmezei csata`, //az array nevű tömböm harmadik elemének esemeny2 tulajdonságának értéket adok(objektum tulajdonság, aminek értéke string)
-        evszam2: `1479`//a tömböm harmadik elemének evszam2 tulajdonságának értéket adunk(objektum tulajdonság, aminek értéke string)
+        Uralkodo_name: `Mátyás király`,// a tömbünk harmadik elemének Uralkodo_name tulajdonságához értéket rendelek(objektum tulajdonság,aminek string értéket adunk)
+        esemeny: `Bécs elfoglalása`,// az arrayem harmadik elemének esemeny tulajdonságához értéket adok(objektum tulajdonság, aminek string értéket adunk)
+        evszam: `1485`,// array tömb harmadik elemének evszam tulajdonságának értékadás(objektum tulajdonság, aminek string értéket adunk)
+        esemeny2: `Kenyérmezei csata`, //az array nevű tömböm harmadik elemének esemeny2 tulajdonságának értéket adok(objektum tulajdonság, aminek string értéket adunk)
+        evszam2: `1479`//a tömböm harmadik elemének evszam2 tulajdonságának értéket adunk(objektum tulajdonság, aminek string értéket adunk)
     },
     {// az array tömb negyedik elemének deklarációja
-        Uralkodo_name: `II. Rákóczi Ferenc`, // a tömböm negyedik elemének Uralkodo_name tulajdonságához értéket rendelek(objektum tulajdonság, aminek értéke string)
-        esemeny: `A szabadságharc kezdete`,// az array-em negyedik elemének esemeny tulajdonságának értéket adok(objektum tulajdonság, aminek értéke string)
-        evszam: `1703`,//az array nevű tömböm negyedik tagjának evszam tulajdonságának értékadás(objektum tulajdonság, aminek értéke string)
-        esemeny2: `A szabadságharc vége`,// a tömböm negyedik elemének esemeny2 tulajdonságának adok értéket(objektum tulajdonság, aminek értéke string)
-        evszam2: `1711` // az array-em negyedik tagjának evszam2_rakoczi tulajdonságának értéket adok(objektum tulajdonság, aminek értéke string)
+        Uralkodo_name: `II. Rákóczi Ferenc`, // a tömböm negyedik elemének Uralkodo_name tulajdonságához értéket rendelek(objektum tulajdonság, aminek string értéket adunk)
+        esemeny: `A szabadságharc kezdete`,// az array-em negyedik elemének esemeny tulajdonságának értéket adok(objektum tulajdonság, aminek string értéket adunk)
+        evszam: `1703`,//az array nevű tömböm negyedik tagjának evszam tulajdonságának értékadás(objektum tulajdonság, aminek string értéket adunk)
+        esemeny2: `A szabadságharc vége`,// a tömböm negyedik elemének esemeny2 tulajdonságának adok értéket(objektum tulajdonság, aminek string értéket adunk)
+        evszam2: `1711` // az array-em negyedik tagjának evszam2_rakoczi tulajdonságának értéket adok(objektum tulajdonság, aminek string értéket adunk)
     },
 
 
@@ -57,9 +57,9 @@ col3.classList.add(`colored_column`); //ezt is ellátom a megfelelő osztálykij
 
 
 const fejcellak = { //létrehozom a fejcellak objektumot, ami a fejléc értékeit fogja tartalmazni(öszetett objektum)
-    fejcella1label: `Uralkodó`, //a fejcellak fejcella1label tulajdonságának értéket adunk(objektum tulajdonság, aminek értéke string)
-    fejcella2label: `Esemény`,// értékadás a fejcellak fejcella2label tulajdonságának(objektum tulajdonság, aminek értéke string)
-    fejcella3label: `Évszám`,//fejcellak fejcella3label tulajdonságának értékadás(objektum tulajdonság, aminek értéke string)
+    fejcella1label: `Uralkodó`, //a fejcellak fejcella1label tulajdonságának értéket adunk(objektum tulajdonság, aminek string értéket adunk)
+    fejcella2label: `Esemény`,// értékadás a fejcellak fejcella2label tulajdonságának(objektum tulajdonság, aminek string értéket adunk)
+    fejcella3label: `Évszám`,//fejcellak fejcella3label tulajdonságának értékadás(objektum tulajdonság, aminek string értéket adunk)
 }
 
 const fejrow = document.createElement(`tr`); //létrehozok egy tablerow elemet ami majd a fejléc sora lesz(HTMLelement)
