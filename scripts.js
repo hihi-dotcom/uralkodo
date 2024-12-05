@@ -1,36 +1,36 @@
 const array = [
-    { // az array tömb második elemének létrehozása
-        Uralkodo_name: `I. István`,//értéket adunk az array tömb második elemének Uralkodo_name tulajdonságának
-        esemeny: `Koronázás`,//értéket adunk az array tömb második elemének esemeny tulajdonságának
-        evszam: `1000`//értéket adunk az array tömb második elemének evszam tulajdonságának   
+    { // az array tömb első elemének létrehozása
+        Uralkodo_name: `I. István`,//értéket adunk az array tömb első elemének Uralkodo_name tulajdonságának
+        esemeny: `Koronázás`,//értéket adunk az array tömb első elemének esemeny tulajdonságának
+        evszam: `1000`//értéket adunk az array tömb első elemének evszam tulajdonságának   
     },
-    {// az array tömb harmadik elemének deklarációja
-        esemeny: `Pannonhalmi apátság megalapítása`, //értéket adunk a tömbünk harmadik elemének esemeny2 tulajdonságának
-        evszam: `1001`//értéket adunk a tömbünk harmadik elemének evszam2 tulajdonságának
+    {// az array tömb második elemének deklarációja
+        esemeny: `Pannonhalmi apátság megalapítása`, //értéket adunk a tömbünk második elemének esemeny2 tulajdonságának
+        evszam: `1001`//értéket adunk a tömbünk második elemének evszam2 tulajdonságának
     },
-    {// az array tömb negyedik elemének létrehozása
-        Uralkodo_name: `IV. Béla`,// array tömb negyedik elemének Uralkodo_name tulajdonságának értéket adunk
-        esemeny: `tatárjárás`,//az array tömbünk negyedik elemének esemeny tulajdonságának értéket adunk
-        evszam: `1241-1242`// a tömbünk negyedik elemének evszam tulajdonságához értéket adunk
+    {// az array tömb harmadik elemének létrehozása
+        Uralkodo_name: `IV. Béla`,// array tömb harmadik elemének Uralkodo_name tulajdonságának értéket adunk
+        esemeny: `tatárjárás`,//az array tömbünk harmadik elemének esemeny tulajdonságának értéket adunk
+        evszam: `1241-1242`// a tömbünk harmadik elemének evszam tulajdonságához értéket adunk
     },
-    {// az array tömb ötödik elemének deklarációja
-        Uralkodo_name: `Mátyás király`,// a tömbünk 5. elemének Uralkodo_name tulajdonságához értéket rendelek
-        esemeny: `Bécs elfoglalása`,// az arrayem 5. elemének esemeny tulajdonságához értéket adok
-        evszam: `1485`// array tömb ötödik elemének evszam tulajdonságának értékadás
+    {// az array tömb negyedik elemének deklarációja
+        Uralkodo_name: `Mátyás király`,// a tömbünk negyedik elemének Uralkodo_name tulajdonságához értéket rendelek
+        esemeny: `Bécs elfoglalása`,// az arrayem negyedik elemének esemeny tulajdonságához értéket adok
+        evszam: `1485`// array tömb negyedik elemének evszam tulajdonságának értékadás
+    },
+    {// az array tömb 5. elemének deklarációja
+        esemeny: `Kenyérmezei csata`, //az array nevű tömböm 5. elemének esemeny2 tulajdonságának értéket adok
+        evszam: `1479`//a tömböm 5. elemének evszam2 tulajdonságának értéket adunk
     },
     {// az array tömb hatodik elemének deklarációja
-        esemeny: `Kenyérmezei csata`, //az array nevű tömböm hatodik elemének esemeny2 tulajdonságának értéket adok
-        evszam: `1479`//a tömböm hatodik elemének evszam2 tulajdonságának értéket adunk
-    },
-    {// az array tömb hetedik elemének deklarációja
-        Uralkodo_name: `II. Rákóczi Ferenc`, // a tömböm hetedik elemének Uralkodo_name tulajdonságához értéket rendelek
-        esemeny: `A szabadságharc kezdete`,// az array-em hetedik elemének esemeny tulajdonságának értéket adok
+        Uralkodo_name: `II. Rákóczi Ferenc`, // a tömböm hatodik elemének Uralkodo_name tulajdonságához értéket rendelek
+        esemeny: `A szabadságharc kezdete`,// az array-em hatodik elemének esemeny tulajdonságának értéket adok
         evszam: `1703`,
-        // az array nevű tömböm hetedik tagjának evszam tulajdonságának értékadás
+        // az array nevű tömböm hatodik tagjának evszam tulajdonságának értékadás
     },
-    {// az array tömb nyolcadik elemének deklarációja
-        esemeny: `A szabadságharc vége`,// a tömböm nyolcadik(utolsó) elemének esemeny2 tulajdonságának adok értéket
-        evszam: `1711` // az array-em nyolcadik tagjának evszam2_rakoczi tulajdonságának értéket adok
+    {// az array tömb heteddik elemének deklarációja
+        esemeny: `A szabadságharc vége`,// a tömböm 7.(utolsó) elemének esemeny2 tulajdonságának adok értéket
+        evszam: `1711` // az array-em 7. tagjának evszam2_rakoczi tulajdonságának értéket adok
     }
 ];
 
@@ -66,7 +66,6 @@ const fejcellak = { //létrehozom a fejcellak objektumot, ami a fejléc értéke
     fejcella2label: `Esemény`,// értékadás a fejcellak fejcella2label tulajdonságának
     fejcella3label: `Évszám`,//fejcellak fejcella3label tulajdonságának értékadás
 }
-
 
 const fejrow = document.createElement(`tr`); //létrehozok egy tablerow elemet ami majd a fejléc sora lesz
 tablafej.appendChild(fejrow);//hozzáadom ezt a tr elemet a thead elemhez
