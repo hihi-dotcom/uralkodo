@@ -129,29 +129,94 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
     const evszam1_Element = document.getElementById(`evszam1`); //elkérem azt a HTMLelementet, ami evszam1 id-val van felszerelve.(HTMLinputfield)
     const esemeny2_Element = document.getElementById(`esemeny2`);// elkérem azt a HTMLelementet, ami az esemeny2 id-val van ellátva.(HTMLinputfield)
     const evszam2_Element = document.getElementById(`evszam2`);// elkérem azt a HTMLelementet, ami az evszam2 id-val van ellátva.(HTMLinputfield)
+
+    const ezaForm = e.currentTarget; // az event currentTarget tulajdonsága a formunkat tartalmazza és ezt eltároljuk egy lokális változóban
+    
+    const errorElements = ezaForm.querySelectorAll(`.error`); // a formunkon belüli összes error classal ellátott htmlelemet elkérjük
+
+    for(const errorElem of errorElements){ //Végigiterálunk a visszakapott error class-sal ellátott HTML elementeken
+        errorElem.innerHTML = ``;//töröljük a mostani tartalmat
+    };
+
+    let valid = true; // a valid változó értékét létrehozáskor igaznak állítjuk be
     const Uralkodo_Nev = uralkodo_NevElement.value;  //az uralkodo_NevElement értékét beleteszem egy lokális változóba
     const Esemeny1 = esemeny1_Element.value; //az esemeny1_Element értékét belerakom egy lokális változóba (HTMLinputfieldbe írt szövegre mutat)
     const Evszam1 = evszam1_Element.value;  // az evszam1_Element értékét beleteszem egy lokális változóba (HTMLinputfieldbe írt szövegre értékre mutat)
     const Esemeny2 = esemeny2_Element.value;// az esemeny2_Element értékét beleteszem egy lokális változóba(HTMLinputfieldbe írt szövegre vagy értékre mutat)
     const Evszam2 = evszam2_Element.value; // az  evszam2_Element értékét beleteszem egy lokális változóba.(HTMLinputfieldbe írt szövegre értékre mutat)
 
+    if(Uralkodo_Nev === ``){
+        const szuloElem = uralkodo_NevElement.parentElement;
+        const errorHely = szuloElem.querySelector('.error');
 
-    const newUralkodo = {// létehozok egy új objektumot, ezt építjük fel az inputfieldekbe beírt értékekből
-        Uralkodo_name: Uralkodo_Nev, // az uj objektum uralkodo értéke az uralkodo_Nev lesz
-        esemeny: Esemeny1, // az új elem esemeny1 értéke az Esemeny1 lesz
-        evszam: Evszam1, // az új objektum evszam1 értéke az Evszam2 lesz
-        esemeny2: Esemeny2, // az új objektum esemeny2 értéke az Esemeny2 lesz
-        evszam2: Evszam2, // az új objektum evszam2 értéke az Evszam2 értéke lesz
+        if(errorHely != undefined){
+            errorHely.innerHTML = `Az Uralkodó nevének megadása kötelező`;
+        }
+        valid = false;
+    };
+    if(Esemeny1 === ``){
+        const szuloElem = esemeny1_Element.parentElement;
+        const errorHely = szuloElem.querySelector('.error');
+
+        if(errorHely != undefined){
+            errorHely.innerHTML = `Az esemény megadása kötelező!`;
+        }
+        valid = false;
+    };
+    if(Evszam1 === ``){
+        const szuloElem = evszam1_Element.parentElement;
+        const errorHely = szuloElem.querySelector('.error');
+
+        if(errorHely != undefined){
+            errorHely.innerHTML = `Az évszámot kötelező megadni!`;
+        }
+        valid = false;
+    };
+/*    if(esemeny2_Element.value === `` ){
+        if(Esemeny2 === ``){
+            const szuloElem = esemeny2_Element.parentElement;
+            const errorHely = szuloElem.querySelector('.error');
+    
+            if(errorHely != undefined){
+                errorHely.innerHTML = `Minden eseményhez kell tartoznia évszámnak is!`;
+            }
+            valid = false;
+        };
+        if( evszam2_Element.value === ``){
+            if(Evszam2 === ``){
+                const szuloElem = evszam2_Element.parentElement;
+                const errorHely = szuloElem.querySelector('.error');
+        
+                if(errorHely != undefined){
+                    errorHely.innerHTML = `Minden eseményhez tartozik egy évszám is!`;
+                }
+                valid = false;
+            };
+        };
+       
+    }
+*/    
+    if(valid){
+        const newUralkodo = {// létehozok egy új objektumot, ezt építjük fel az inputfieldekbe beírt értékekből
+            Uralkodo_name: Uralkodo_Nev, // az uj objektum uralkodo értéke az uralkodo_Nev lesz
+            esemeny: Esemeny1, // az új elem esemeny1 értéke az Esemeny1 lesz
+            evszam: Evszam1, // az új objektum evszam1 értéke az Evszam2 lesz
+            esemeny2: Esemeny2, // az új objektum esemeny2 értéke az Esemeny2 lesz
+            evszam2: Evszam2, // az új objektum evszam2 értéke az Evszam2 értéke lesz
+        };
+        array.push(newUralkodo); // hozzáadom a tömbömhöz az újonnan deklarált objektumot 
+        tablatest.innerHTML = ``; // a táblázatom tartalmát egy üres stringgel teszem egyenlővé, hogy törlödjön a tábla és ne renderelődjenek újra a már meglévő elemek
+        renderTabla(array); // újra meghívom a renderTabla függvényt
+        ezaForm.reset();    
     };
 
+    
     if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){
         newUralkodo.esemeny2 = undefined;
         newUralkodo.evszam2 = undefined;
         //az értékadás során, ebben az elágazásban vizsgálom, hogy az esemeny2_Element és evszam2_Element értéke üres string-e, és ha ez van, akkor ezeknek a változók undefined értéket kapnak, mivel fentebb, úgy írtam meg a renderelési logikát,hogy ha vagy az egyik vagy a másik értéke undefined ne fűzzön hozzon létre egy felesleges sort.
     };
-    array.push(newUralkodo); // hozzáadom a tömbömhöz az újonnan deklarált objektumot 
-    tablatest.innerHTML = ``; // a táblázatom tartalmát egy üres stringgel teszem egyenlővé, hogy törlödjön a tábla és ne renderelődjenek újra a már meglévő elemek
-    renderTabla(array); // újra meghívom a renderTabla függvényt
+   
 });
   
 

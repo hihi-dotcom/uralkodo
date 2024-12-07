@@ -5,3 +5,7 @@ table, tbody, tr, td, thead, th{
     border: 2px solid black;
     border-collapse: collapse;
 }
+.error{
+    color:red;
+    text-shadow: 1em;
+}
