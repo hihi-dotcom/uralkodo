@@ -1,3 +1,13 @@
+//táblázat generálása globális változókkal
+const tabla = document.createElement(`table`); //Létrehozok egy table elemet, ami a táblázatomat fogja tartalmazni.(HTMLelement)
+const tablafej = document.createElement(`thead`); //Létrehozok egy tablehead elemet, ami a táblázat fejlécét fogja tartalmazni.(HTMLelement)
+const tablatest = document.createElement(`tbody`);//Létrehozok egy tablebody elementet, mely a táblázatom törzsét(sorait) fogja tartalmazni(HTMLelement)
+document.body.appendChild(tabla); // a table elemet hozzáfűzöm a HTML dokumentumhoz.
+tabla.appendChild(tablafej); // a thead elemet hozzáfűzöm a table elemhez
+tabla.appendChild(tablatest);// a table body elementet hozzáfűzöm a táblázatomhoz
+
+
+
 const array = [
     { // az array tömb első elemének létrehozása
         Uralkodo_name: `I. István`,//értéket adunk az array tömb első elemének Uralkodo_name tulajdonságának(objektum tulajdonság, aminek string értéket adunk)
@@ -31,13 +41,7 @@ const array = [
 
 
 
-//táblázat generálása globális változókkal
-const tabla = document.createElement(`table`); //Létrehozok egy table elemet, ami a táblázatomat fogja tartalmazni.(HTMLelement)
-const tablafej = document.createElement(`thead`); //Létrehozok egy tablehead elemet, ami a táblázat fejlécét fogja tartalmazni.(HTMLelement)
-const tablatest = document.createElement(`tbody`);//Létrehozok egy tablebody elementet, mely a táblázatom törzsét(sorait) fogja tartalmazni(HTMLelement)
-document.body.appendChild(tabla); // a table elemet hozzáfűzöm a HTML dokumentumhoz.
-tabla.appendChild(tablafej); // a thead elemet hozzáfűzöm a table elemhez
-tabla.appendChild(tablatest);// a table body elementet hozzáfűzöm a táblázatomhoz
+
 
 
 //css 
@@ -78,7 +82,8 @@ const fejcella3 = document.createElement(`th`);//létrehozok egy th elemet ami a
 fejrow.appendChild(fejcella3);//hozzáfűzöm ezt a th elemet a fejléc sorához
 fejcella3.innerHTML = fejcellak.fejcella3label; // a cella tartalma a fejcellak objektum  fejcella3label tulajdonságának értéke lesz
 
-function renderTabla(){// definiálom a renderTabla függvényt
+function renderTabla(array){// definiálom a renderTabla függvényt
+   
     for(const jelenElem of array){//végig iterálunk a tömbön egy növekményes for ciklussal
         //a táblázat törzsének sorai
         const sor = document.createElement(`tr`);//létrehozok egy tableRow elemet(HTMLelement)
@@ -97,7 +102,7 @@ function renderTabla(){// definiálom a renderTabla függvényt
         sorEvszam.innerHTML = jelenElem.evszam;// a cella tartalma az éppen aktuális elem evszam tulajdonsága lesz
         sor.appendChild(sorEvszam);// Rögtön hozzáfűzöm ezt az elemet a sorhoz.
 
-        if(jelenElem.esemeny2 !== undefined && jelenElem.evszam2 !== undefined)
+        if(jelenElem.esemeny2 !== undefined || jelenElem.evszam2 !== undefined)
         {//ha az aktuális objektumnak nincs esemeny2 és evszam2 tulajdonsága akkor az elágazáson belüli kód fut le
             sorUralkodoName.rowSpan = 2;// a táblázat első cellájának rowSpan tulajdonságát 2-re állítjuk
             const sor2 = document.createElement(`tr`); // létrehozok még egy tableRow elementet a második eseménynek és évszámnak(HTMLelement)
@@ -113,9 +118,42 @@ function renderTabla(){// definiálom a renderTabla függvényt
     }
 };
 
-renderTabla();//meghívom a renderTabla függvényt
+renderTabla(array);//meghívom a renderTabla függvényt
+
+const form = document.getElementById(`form`);// elkérem a HTMLelementet, ami a form id-vel van ellátva
+
+form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTMLelement eseménykezelőjét
+    e.preventDefault();//megakadályozom hogy a böngésző standard működése lefusson a submit esetén
+    const uralkodo_NevElement = document.getElementById(`uralkodo_nev`); // elkérem a HTMLelementet, amely az uralkodo_nev id-val van ellátva. (HTMLelement)
+    const esemeny1_Element = document.getElementById(`esemeny1`); //elkérem azt a HTMLelementet, ami az esemeny1 id-val van felvértezve.(HTMLelement)
+    const evszam1_Element = document.getElementById(`evszam1`); //elkérem azt a HTMLelementet, ami evszam1 id-val van felszerelve.
+    const esemeny2_Element = document.getElementById(`esemeny2`);// elkérem azt a HTMLelementet, ami az esemeny2 id-val van ellátva.
+    const evszam2_Element = document.getElementById(`evszam2`);// elkérem azt a HTMLelementet, ami az evszam2 id-val van ellátva.
+    const uralkodo_Nev = uralkodo_NevElement.value;  //az uralkodo_NevElement értékét beleteszem egy lokális változóba
+    const Esemeny1 = esemeny1_Element.value; //az esemeny1_Element értékét belerakom egy lokális változóba
+    const Evszam1 = evszam1_Element.value;  // az evszam1_Element értékét beleteszem egy lokális változóba 
+    const Esemeny2 = esemeny2_Element.value;// az esemeny2_Element értékét beleteszem egy lokális változóba
+    const Evszam2 = evszam2_Element.value; // az  evszam2_Element értékét beleteszem egy lokális változóba.
 
 
+
+    const newUralkodo = {// létehozok egy új objektumot
+        Uralkodo_name: uralkodo_Nev, // az uj objektum uralkodo értéke az uralkodo_Nev lesz
+        esemeny: Esemeny1, // az új elem esemeny1 értéke az Esemeny1 lesz
+        evszam: Evszam1, // az új objektum evszam1 értéke az Evszam2 lesz
+        esemeny2: Esemeny2, // az új objektum esemeny2 értéke az Esemeny2 lesz
+        evszam2: Evszam2, // az új objektum evszam2 értéke az Evszam2 értéke lesz
+    };
+
+    if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){
+        newUralkodo.esemeny2 = undefined;
+        newUralkodo.evszam2 = undefined;
+        //az értékadás során, ebben az elágazásban vizsgálom, hogy az esemeny2_Element és evszam2_Element értéke üres string-e, és ha ez van, akkor ezeknek a változók undefined értéket kapnak, mivel fentebb, úgy írtam meg a renderelési logikát,hogy ha vagy az egyik vagy a másik értéke undefined ne fűzzön hozzon létre egy felesleges sort.
+    };
+    array.push(newUralkodo); // hozzáadom a tömbömhöz az újonnan deklarált objektumot 
+    tablatest.innerHTML = ``; // a táblázatom tartalmát egy üres stringgel teszem egyenlővé, hogy törlödjön a tábla és ne renderelődjenek újra a már meglévő elemek
+    renderTabla(array); // újra meghívom a renderTabla függvényt
+});
   
 
 
