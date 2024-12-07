@@ -120,25 +120,24 @@ function renderTabla(array){// definiálom a renderTabla függvényt
 
 renderTabla(array);//meghívom a renderTabla függvényt
 
-const form = document.getElementById(`form`);// elkérem a HTMLelementet, ami a form id-vel van ellátva
+const form = document.getElementById(`form`);// elkérem a HTMLelementet, ami a form id-vel van ellátva (HTMLelement)
 
 form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTMLelement eseménykezelőjét
     e.preventDefault();//megakadályozom hogy a böngésző standard működése lefusson a submit esetén
-    const uralkodo_NevElement = document.getElementById(`uralkodo_nev`); // elkérem a HTMLelementet, amely az uralkodo_nev id-val van ellátva. (HTMLelement)
+    const uralkodo_NevElement = document.getElementById(`uralkodo_nev`); // elkérem a HTMLelementet, amely az uralkodo_nev id-val van ellátva. (HTMLinputfield)
     const esemeny1_Element = document.getElementById(`esemeny1`); //elkérem azt a HTMLelementet, ami az esemeny1 id-val van felvértezve.(HTMLelement)
-    const evszam1_Element = document.getElementById(`evszam1`); //elkérem azt a HTMLelementet, ami evszam1 id-val van felszerelve.
-    const esemeny2_Element = document.getElementById(`esemeny2`);// elkérem azt a HTMLelementet, ami az esemeny2 id-val van ellátva.
-    const evszam2_Element = document.getElementById(`evszam2`);// elkérem azt a HTMLelementet, ami az evszam2 id-val van ellátva.
-    const uralkodo_Nev = uralkodo_NevElement.value;  //az uralkodo_NevElement értékét beleteszem egy lokális változóba
-    const Esemeny1 = esemeny1_Element.value; //az esemeny1_Element értékét belerakom egy lokális változóba
-    const Evszam1 = evszam1_Element.value;  // az evszam1_Element értékét beleteszem egy lokális változóba 
-    const Esemeny2 = esemeny2_Element.value;// az esemeny2_Element értékét beleteszem egy lokális változóba
-    const Evszam2 = evszam2_Element.value; // az  evszam2_Element értékét beleteszem egy lokális változóba.
+    const evszam1_Element = document.getElementById(`evszam1`); //elkérem azt a HTMLelementet, ami evszam1 id-val van felszerelve.(HTMLinputfield)
+    const esemeny2_Element = document.getElementById(`esemeny2`);// elkérem azt a HTMLelementet, ami az esemeny2 id-val van ellátva.(HTMLinputfield)
+    const evszam2_Element = document.getElementById(`evszam2`);// elkérem azt a HTMLelementet, ami az evszam2 id-val van ellátva.(HTMLinputfield)
+    const Uralkodo_Nev = uralkodo_NevElement.value;  //az uralkodo_NevElement értékét beleteszem egy lokális változóba
+    const Esemeny1 = esemeny1_Element.value; //az esemeny1_Element értékét belerakom egy lokális változóba (HTMLinputfieldbe írt szövegre mutat)
+    const Evszam1 = evszam1_Element.value;  // az evszam1_Element értékét beleteszem egy lokális változóba (HTMLinputfieldbe írt szövegre értékre mutat)
+    const Esemeny2 = esemeny2_Element.value;// az esemeny2_Element értékét beleteszem egy lokális változóba(HTMLinputfieldbe írt szövegre vagy értékre mutat)
+    const Evszam2 = evszam2_Element.value; // az  evszam2_Element értékét beleteszem egy lokális változóba.(HTMLinputfieldbe írt szövegre értékre mutat)
 
 
-
-    const newUralkodo = {// létehozok egy új objektumot
-        Uralkodo_name: uralkodo_Nev, // az uj objektum uralkodo értéke az uralkodo_Nev lesz
+    const newUralkodo = {// létehozok egy új objektumot, ezt építjük fel az inputfieldekbe beírt értékekből
+        Uralkodo_name: Uralkodo_Nev, // az uj objektum uralkodo értéke az uralkodo_Nev lesz
         esemeny: Esemeny1, // az új elem esemeny1 értéke az Esemeny1 lesz
         evszam: Evszam1, // az új objektum evszam1 értéke az Evszam2 lesz
         esemeny2: Esemeny2, // az új objektum esemeny2 értéke az Esemeny2 lesz
