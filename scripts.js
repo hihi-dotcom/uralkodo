@@ -82,6 +82,10 @@ const fejcella3 = document.createElement(`th`);//létrehozok egy th elemet ami a
 fejrow.appendChild(fejcella3);//hozzáfűzöm ezt a th elemet a fejléc sorához
 fejcella3.innerHTML = fejcellak.fejcella3label; // a cella tartalma a fejcellak objektum  fejcella3label tulajdonságának értéke lesz
 
+/**
+ * 
+ * @param {Array} array 
+ */
 function renderTabla(array){// definiálom a renderTabla függvényt
    
     for(const jelenElem of array){//végig iterálunk a tömbön egy növekményes for ciklussal
@@ -89,11 +93,11 @@ function renderTabla(array){// definiálom a renderTabla függvényt
         const sor = document.createElement(`tr`);//létrehozok egy tableRow elemet(HTMLelement)
         tablatest.appendChild(sor);//Hozzáfűzöm ezt a sort a táblázatom törzséhez.
 
-        const sorUralkodoName  = document.createElement(`td`);//deklarálok egy td elemet(HTMLelement)
+        const sorUralkodoName  = document.createElement(`td`);//deklarálok egy td elemet(HTMLelement) az Uralkodó nevének
         sorUralkodoName.innerHTML  = jelenElem.Uralkodo_name;// a cella tartalma a jelenlegi elem Uralkodo_name tulajdonságának értéke lesz
         sor.appendChild(sorUralkodoName);//Hozzáfűzöm a most deklarált td elemet a fentebb létrehozott sorhoz
 
-        const sorEsemeny  = document.createElement(`td`); //létrehozok ismét egy td elemet(HTMLelement)
+        const sorEsemeny  = document.createElement(`td`); //létrehozok ismét egy td elemet(HTMLelement) az elso eseménynek
         sorEsemeny.innerHTML = jelenElem.esemeny;// a cella tartalma az éppen aktuális elem esemeny tulajdonságának értéke lesz
         sor.appendChild(sorEsemeny);// Hozzáfűzöm ezt az elemet a korábban létrehozott soromhoz.
 
@@ -145,64 +149,63 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
     const Esemeny2 = esemeny2_Element.value;// az esemeny2_Element értékét beleteszem egy lokális változóba(HTMLinputfieldbe írt szövegre vagy értékre mutat)
     const Evszam2 = evszam2_Element.value; // az  evszam2_Element értékét beleteszem egy lokális változóba.(HTMLinputfieldbe írt szövegre értékre mutat)
 
-    if(Uralkodo_Nev === ``){
-        const szuloElem = uralkodo_NevElement.parentElement;
-        const errorHely = szuloElem.querySelector('.error');
-
-        if(errorHely != undefined){
-            errorHely.innerHTML = `Az Uralkodó nevének megadása kötelező`;
+    if(Uralkodo_Nev === ``){//az elágazás törzsében lévő kód akkor fut le,ha az Uralkodó név beviteli mezője üres
+        const szuloElem = uralkodo_NevElement.parentElement;//eltároljuk egy lokális változóba az Uralkodó név beviteli mezőjének a parentElement tulajdonságát, ami most a div.field
+        const errorHely = szuloElem.querySelector('.error'); // Az Uralkodó név beviteli mezőjének parentElement divjében megkeressük az első olyan elemet, ami el van látva az error classal
+        if(errorHely != undefined){//Ha találtunk ilyen mezőt, tehát a változó értéke nem undefined
+            errorHely.innerHTML = `Az Uralkodó nevének megadása kötelező!`;// Akkor beleírjuk az itt látható hibaüzenetünket
         }
-        valid = false;
+        valid = false; // a valid változó értékét hamisra állítjuk
     };
-    if(Esemeny1 === ``){
-        const szuloElem = esemeny1_Element.parentElement;
-        const errorHely = szuloElem.querySelector('.error');
+    if(Esemeny1 === ``){ //a lentebb látható kód,akkor fut le, ha az első eseményhez tartozó beviteli mező üres
+        const szuloElem = esemeny1_Element.parentElement;//eltároljuk egy lokális változóba az Első esemény beviteli mezőjének a parentElement propertyjét, ami most a div class="field"
+        const errorHely = szuloElem.querySelector('.error');// Az Első esemény beviteli mezőjének parentElement divjében megkeressük az első olyan elemet, ami rendelkezik az error classal
 
-        if(errorHely != undefined){
-            errorHely.innerHTML = `Az esemény megadása kötelező!`;
+        if(errorHely != undefined){// ha van ilyen mező tehát az értéke nem undefined
+            errorHely.innerHTML = `Az esemény megadása kötelező!`;//Akkor beleírjuk az itt látható error üzenetet
         }
-        valid = false;
+        valid = false; // a valid változó értékét ismételten false-ra állítjuk
     };
-    if(Evszam1 === ``){
-        const szuloElem = evszam1_Element.parentElement;
-        const errorHely = szuloElem.querySelector('.error');
+    if(Evszam1 === ``){ // ha az első évszám beviteli mezője teljesen üres
+        const szuloElem = evszam1_Element.parentElement;//elrakjuk egy lokális változóba az Első évszám beviteli mezőjének a parentElement propertyjét, ami most a div class="field"
+        const errorHely = szuloElem.querySelector('.error');// Az Első évszám beviteli mezőjének parentElement divjében megkeressük az első olyan elemet, ami rendelkezik az error classal
 
-        if(errorHely != undefined){
-            errorHely.innerHTML = `Az évszámot kötelező megadni!`;
+        if(errorHely != undefined){ // Ha létezik ilyen mező, akkor nem undefined az értéke
+            errorHely.innerHTML = `Az évszámot kötelező megadni!`; //és akkor beleírjuk a csodás hibaüzenetünket
         }
-        valid = false;
+        valid = false; // a valid változó értékét falsera állítjuk megint
     };
-/*    if(esemeny2_Element.value === `` ){
-        if(Esemeny2 === ``){
-            const szuloElem = esemeny2_Element.parentElement;
-            const errorHely = szuloElem.querySelector('.error');
+    if(Esemeny2 === `` && Evszam2 !== ``){// feltételes validáció, nem minden esetben fut le, de ha a második esemény üres és a második évszám nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
+            const szuloElem = esemeny2_Element.parentElement; //elrakjuk egy lokális változóba a Második esemény beviteli mezőjének a parentElement propertyjét, ami most a div class="field"
+            const errorHely = szuloElem.querySelector('.error'); // A második esemény parentElement divjében megkeressük a legelső olyan elemet amin rajta van az error class
     
-            if(errorHely != undefined){
-                errorHely.innerHTML = `Minden eseményhez kell tartoznia évszámnak is!`;
+            if(errorHely != undefined){ // ha ez az elem létezik, tehát nem undefined
+                errorHely.innerHTML = `Minden eseményhez kell tartoznia évszámnak is!`; //Akkor beleírjuk a csodás hibaüzenetünket
             }
-            valid = false;
-        };
-        if( evszam2_Element.value === ``){
-            if(Evszam2 === ``){
-                const szuloElem = evszam2_Element.parentElement;
-                const errorHely = szuloElem.querySelector('.error');
+            valid = false; //a valid változó értékét természetesen itt is hamisra állítjuk
+    };
+    if(Evszam2 === `` && Esemeny2 !== ``){ // feltételes validáció, nem minden esetben fut le, de ha a második évszám üres és a második esemény nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
+                const szuloElem = evszam2_Element.parentElement;//elrakjuk egy lokális változóba a Második évszám beviteli mezőjének a parentElement tulajdonságát, ami most a div class="field"
+                const errorHely = szuloElem.querySelector('.error');// ebben a parentElementben megkeressük az első olyan elemet ami rendelkezik az error classal
         
-                if(errorHely != undefined){
-                    errorHely.innerHTML = `Minden eseményhez tartozik egy évszám is!`;
+                if(errorHely != undefined){ // Ha van ilyen mező, ez sem undefined
+                    errorHely.innerHTML = `Minden eseményhez tartozik egy évszám is!`; // Beleírjuk a csodás hibaüzenetünket
                 }
-                valid = false;
-            };
-        };
-       
-    }
-*/    
-    if(valid){
+                valid = false; // a valid változó értékét falsera állítjuk, ez a folyamatos hamisra állítás egy diszkrét módja, annak hogy minden egyes validáció esetnél hamissal térünk vissza nyilván egy return is megoldaná ezt
+    };
+
+    if(valid){//ellenőrizzük,hogy sikeres volt-e a validáció, és akkor fut le a lentebb látható kód
         const newUralkodo = {// létehozok egy új objektumot, ezt építjük fel az inputfieldekbe beírt értékekből
             Uralkodo_name: Uralkodo_Nev, // az uj objektum uralkodo értéke az uralkodo_Nev lesz
             esemeny: Esemeny1, // az új elem esemeny1 értéke az Esemeny1 lesz
             evszam: Evszam1, // az új objektum evszam1 értéke az Evszam2 lesz
             esemeny2: Esemeny2, // az új objektum esemeny2 értéke az Esemeny2 lesz
             evszam2: Evszam2, // az új objektum evszam2 értéke az Evszam2 értéke lesz
+        };
+        if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){
+            newUralkodo.esemeny2 = undefined;
+            newUralkodo.evszam2 = undefined;
+            //az értékadás során, ebben az elágazásban vizsgálom, hogy az esemeny2_Element és evszam2_Element értéke üres string-e, és ha ez van, akkor ezeknek a változók undefined értéket kapnak, mivel fentebb, úgy írtam meg a renderelési logikát,hogy ha vagy az egyik vagy a másik értéke undefined ne fűzzön hozzon létre egy felesleges sort.
         };
         array.push(newUralkodo); // hozzáadom a tömbömhöz az újonnan deklarált objektumot 
         tablatest.innerHTML = ``; // a táblázatom tartalmát egy üres stringgel teszem egyenlővé, hogy törlödjön a tábla és ne renderelődjenek újra a már meglévő elemek
@@ -211,11 +214,7 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
     };
 
     
-    if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){
-        newUralkodo.esemeny2 = undefined;
-        newUralkodo.evszam2 = undefined;
-        //az értékadás során, ebben az elágazásban vizsgálom, hogy az esemeny2_Element és evszam2_Element értéke üres string-e, és ha ez van, akkor ezeknek a változók undefined értéket kapnak, mivel fentebb, úgy írtam meg a renderelési logikát,hogy ha vagy az egyik vagy a másik értéke undefined ne fűzzön hozzon létre egy felesleges sort.
-    };
+    
    
 });
   
