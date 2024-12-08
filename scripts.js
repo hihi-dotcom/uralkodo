@@ -86,7 +86,7 @@ fejcella3.innerHTML = fejcellak.fejcella3label; // a cella tartalma a fejcellak 
  * 
  * @param {Array} array 
  */
-function renderTabla(array){// definiálom a renderTabla függvényt
+function renderTabla(array){// definiálom a renderTabla függvényt, itt a függvényünk bemeneti paraméterként a tömbünket kapja meg, amivel később dolgozik is, és ezt várja minden egyes újabb függvényhívásakor is.
    
     for(const jelenElem of array){//végig iterálunk a tömbön egy növekményes for ciklussal
         //a táblázat törzsének sorai
@@ -143,38 +143,21 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
     };
 
     let valid = true; // a valid változó értékét létrehozáskor igaznak állítjuk be
-    const Uralkodo_Nev = uralkodo_NevElement.value;  //az uralkodo_NevElement értékét beleteszem egy lokális változóba
-    const Esemeny1 = esemeny1_Element.value; //az esemeny1_Element értékét belerakom egy lokális változóba (HTMLinputfieldbe írt szövegre mutat)
-    const Evszam1 = evszam1_Element.value;  // az evszam1_Element értékét beleteszem egy lokális változóba (HTMLinputfieldbe írt szövegre értékre mutat)
-    const Esemeny2 = esemeny2_Element.value;// az esemeny2_Element értékét beleteszem egy lokális változóba(HTMLinputfieldbe írt szövegre vagy értékre mutat)
-    const Evszam2 = evszam2_Element.value; // az  evszam2_Element értékét beleteszem egy lokális változóba.(HTMLinputfieldbe írt szövegre értékre mutat)
+   
 
-    if(Uralkodo_Nev === ``){//az elágazás törzsében lévő kód akkor fut le,ha az Uralkodó név beviteli mezője üres
-        const szuloElem = uralkodo_NevElement.parentElement;//eltároljuk egy lokális változóba az Uralkodó név beviteli mezőjének a parentElement tulajdonságát, ami most a div.field
-        const errorHely = szuloElem.querySelector('.error'); // Az Uralkodó név beviteli mezőjének parentElement divjében megkeressük az első olyan elemet, ami el van látva az error classal
-        if(errorHely != undefined){//Ha találtunk ilyen mezőt, tehát a változó értéke nem undefined
-            errorHely.innerHTML = `Az Uralkodó nevének megadása kötelező!`;// Akkor beleírjuk az itt látható hibaüzenetünket
-        }
-        valid = false; // a valid változó értékét hamisra állítjuk
-    };
-    if(Esemeny1 === ``){ //a lentebb látható kód,akkor fut le, ha az első eseményhez tartozó beviteli mező üres
-        const szuloElem = esemeny1_Element.parentElement;//eltároljuk egy lokális változóba az Első esemény beviteli mezőjének a parentElement propertyjét, ami most a div class="field"
-        const errorHely = szuloElem.querySelector('.error');// Az Első esemény beviteli mezőjének parentElement divjében megkeressük az első olyan elemet, ami rendelkezik az error classal
+    
 
-        if(errorHely != undefined){// ha van ilyen mező tehát az értéke nem undefined
-            errorHely.innerHTML = `Az esemény megadása kötelező!`;//Akkor beleírjuk az itt látható error üzenetet
-        }
-        valid = false; // a valid változó értékét ismételten false-ra állítjuk
-    };
-    if(Evszam1 === ``){ // ha az első évszám beviteli mezője teljesen üres
-        const szuloElem = evszam1_Element.parentElement;//elrakjuk egy lokális változóba az Első évszám beviteli mezőjének a parentElement propertyjét, ami most a div class="field"
-        const errorHely = szuloElem.querySelector('.error');// Az Első évszám beviteli mezőjének parentElement divjében megkeressük az első olyan elemet, ami rendelkezik az error classal
+        if(!validateFormHTMLinputMezo(uralkodo_NevElement,`Az Uralkodó nevének megadása kötelező!`)){//Ha a validateFormHTMLinputMezo függvény hamissal tér vissza az uralkodo_Nev HTMLElement esetén
+            valid = false;// a valid változó értékét hamis-ra állítjuk
+        };
 
-        if(errorHely != undefined){ // Ha létezik ilyen mező, akkor nem undefined az értéke
-            errorHely.innerHTML = `Az évszámot kötelező megadni!`; //és akkor beleírjuk a csodás hibaüzenetünket
+        if(!validateFormHTMLinputMezo(esemeny1_Element, `Az esemény megadása kötelező`)){//Ha a validateFormHTMLinputMezo függvény hamissal tér vissza az esemeny1 HTMLElement esetén, ráfordul az elágazásra
+            valid = false;// a valid változó értékét hamis-ra állítjuk ismét
+        };
+
+        if(!validateFormHTMLinputMezo(evszam1_Element, `Az évszámot is kötelező megadni!`)){//Ha a validateFormHTMLinputMezo függvény hamissal tér vissza az evszam1 HTMLElement esetén
+            valid = false;// a valid változónak hamis értéket adunk
         }
-        valid = false; // a valid változó értékét falsera állítjuk megint
-    };
     if(Esemeny2 === `` && Evszam2 !== ``){// feltételes validáció, nem minden esetben fut le, de ha a második esemény üres és a második évszám nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
             const szuloElem = esemeny2_Element.parentElement; //elrakjuk egy lokális változóba a Második esemény beviteli mezőjének a parentElement propertyjét, ami most a div class="field"
             const errorHely = szuloElem.querySelector('.error'); // A második esemény parentElement divjében megkeressük a legelső olyan elemet amin rajta van az error class
@@ -195,6 +178,12 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
     };
 
     if(valid){//ellenőrizzük,hogy sikeres volt-e a validáció, és akkor fut le a lentebb látható kód
+        //ha a valid változó értéke még mindig igaz, akkor
+        const Uralkodo_Nev = uralkodo_NevElement.value;  //az uralkodo_NevElement értékét beleteszem egy lokális változóba
+        const Esemeny1 = esemeny1_Element.value; //az esemeny1_Element értékét belerakom egy lokális változóba (HTMLinputfieldbe írt szövegre mutat)
+        const Evszam1 = evszam1_Element.value;  // az evszam1_Element értékét beleteszem egy lokális változóba (HTMLinputfieldbe írt szövegre értékre mutat)
+        const Esemeny2 = esemeny2_Element.value;// az esemeny2_Element értékét beleteszem egy lokális változóba(HTMLinputfieldbe írt szövegre vagy értékre mutat)
+        const Evszam2 = evszam2_Element.value; // az  evszam2_Element értékét beleteszem egy lokális változóba.(HTMLinputfieldbe írt szövegre értékre mutat)
         const newUralkodo = {// létehozok egy új objektumot, ezt építjük fel az inputfieldekbe beírt értékekből
             Uralkodo_name: Uralkodo_Nev, // az uj objektum uralkodo értéke az uralkodo_Nev lesz
             esemeny: Esemeny1, // az új elem esemeny1 értéke az Esemeny1 lesz
@@ -212,13 +201,27 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
         renderTabla(array); // újra meghívom a renderTabla függvényt
         ezaForm.reset();    
     };
-
-    
-    
-   
 });
   
+/**
+ * 
+ * @param {HTMLElement} inputhtmlElem 
+ * @param {string} errorUzenet 
+ */
+function validateFormHTMLinputMezo(inputhtmlElem, errorUzenet){ //definiáljuk a validateFormHTMLinputMezo függvényt, ami két bemeneti paramétert vár egy inputhtmlElemet, ami egy HTMLElement típusú bemeneti paraméternek kell lennie, illetve egy error üzenetet, ami pedig egy string típus lesz
+    let valid = true; //létrehozzuk a valid lokális változót true értékkel
+    if(inputhtmlElem === ``){ //ha a paraméterként kapott beviteli mező üres az elágazás törzsében lévő kód fut le
+        const parentElem = inputhtmlElem.parentElement;//eltároljuk egy változóba a kapott HTMLElementnek a parentElement tulajdonságát
 
+        const errorPlace = parentElem.querySelector(`.error`); // a paraméterként kapott beviteli mező parentElement divjében megkeressük az első olyan elemet, amin rajta van az error class
+
+        if(errorPlace != undefined){ //Ha találunk ilyen mezőt, akkor nem undefined
+            errorPlace.innerHTML = errorUzenet; //Akkor beleírjuk a hibaüzenetünket, amit bemeneti paraméterként várunk
+        }
+        valid = false;// a valid lokális változó étékét hamisra állítjuk
+    };
+    return valid; // visszatérünk a valid változóval, ami természetesen, akkor hamis,ha nem ment át a validáció, egyébként pedig igazzal tér vissza.
+}
 
 
 
