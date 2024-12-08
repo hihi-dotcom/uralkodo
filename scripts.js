@@ -154,17 +154,9 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
     if(!validateFormHTMLinputMezo(evszam1_Element, `Az évszámot is kötelező megadni!`)){//Ha a validateFormHTMLinputMezo függvény hamissal tér vissza az evszam1 HTMLElement esetén
             valid = false;// a valid változónak hamis értéket adunk
     };
-    if(Esemeny2 === `` && Evszam2 !== ``){// feltételes validáció, nem minden esetben fut le, de ha a második esemény üres és a második évszám nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
-
-            if(!validateFormHTMLinputMezo(esemeny2_Element, `Minden eseményhez kell tartoznia évszámnak is!`)){//Ha a validateFormHTMLinputMezo függvény hamissal tér vissza az esemeny2 HTMLElement esetén
-                valid = false;// a valid változónak hamis értéket adunk
-        };
-    };
-    if(Evszam2 === `` && Esemeny2 !== ``){ // feltételes validáció, nem minden esetben fut le, de ha a második évszám üres és a második esemény nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
-
-                if(!validateFormHTMLinputMezo(evszam2_Element, `Minden eseményhez tartozik egy évszám is!`)){//Ha a validateFormHTMLinputMezo függvény hamissal tér vissza az evszam2 HTMLElement esetén
-                    valid = false;// a valid változónak hamis értéket adunk
-            };
+    
+    if(!complexValidation(esemeny2_Element, evszam2_Element, `Minden eseményhez vagy évszámhoz tartozik egy évszám vagy esemény!`)){//Ha a complexValidation függvény hamissal tér vissza az esemeny2 és evszam2 HTMLelementek vizsgálata esetén
+        valid = false;// valid változónak hamis értéket adunk
     };
 
     if(valid){//ellenőrizzük,hogy sikeres volt-e a validáció, és akkor fut le a lentebb látható kód
@@ -214,6 +206,37 @@ function validateFormHTMLinputMezo(inputhtmlElem, errorUzenet){ //definiáljuk a
 }
 
 
+/**
+ * 
+ * @param {HTMLElement} HTMlinput1 
+ * @param {HTMLElement} HTMlinput2 
+ * @param {string} errorMessage 
+ * @returns 
+ */
+function complexValidation(HTMlinput1, HTMlinput2, errorMessage){//definiáljuk a complexValidation függvényt ez három bemenetet vár kettő HTMlinputifieldet, aminek az értékeit vizsgáljuk és egy error messaget amit visszaad a documentben az error classal ellátott divbe
+    let valid = true;
+    if(HTMlinput1.value === `` && HTMlinput2.value !== ``){ // feltételes validáció, nem minden esetben fut le, de ha a második évszám üres és a második esemény nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
+        const szuloElem = HTMlinput1.parentElement;//elrakjuk egy lokális változóba a Második évszám beviteli mezőjének a parentElement tulajdonságát, ami most a div class="field"
+        const errorHely = szuloElem.querySelector('.error');// ebben a parentElementben megkeressük az első olyan elemet ami rendelkezik az error classal
+
+        if(errorHely != undefined){ // Ha van ilyen mező, ez sem undefined
+            errorHely.innerHTML = errorMessage; // Beleírjuk a csodás hibaüzenetünket
+        }
+        
+        valid = false; // a valid változó értékét falsera állítjuk, ez a folyamatos hamisra állítás egy diszkrét módja, annak hogy minden egyes validáció esetnél hamissal térünk vissza nyilván egy return is megoldaná ezt
+    };
+    if(HTMlinput2.value === `` && HTMlinput1.value !== ``){// feltételes validáció, nem minden esetben fut le, de ha a második esemény üres és a második évszám nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
+        const szuloElem = HTMlinput2.parentElement; //elrakjuk egy lokális változóba a Második esemény beviteli mezőjének a parentElement propertyjét, ami most a div class="field"
+        const errorHely = szuloElem.querySelector('.error'); // A második esemény parentElement divjében megkeressük a legelső olyan elemet amin rajta van az error class
+
+        if(errorHely != undefined){ // ha ez az elem létezik, tehát nem undefined
+            errorHely.innerHTML = errorMessage; //Akkor beleírjuk a csodás hibaüzenetünket
+        }
+        valid = false; //a valid változó értékét természetesen itt is hamisra állítjuk
+
+    };
+    return valid;
+};
 
     
 
