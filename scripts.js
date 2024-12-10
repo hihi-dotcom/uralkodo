@@ -293,7 +293,7 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
             esemeny2: Esemeny2, // az új objektum esemeny2 értéke az Esemeny2 lesz
             evszam2: Evszam2, // az új objektum evszam2 értéke az Evszam2 értéke lesz
         };
-        if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){ 
+        if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){ //ha az újonnan létrehozott objektumunk evszam2 és esemeny2 értéke üres sztring akkor az értékük undefined lesz,mivel így fog működni megfelőlen az objektum hozzáadás
             newUralkodo.esemeny2 = undefined;
             newUralkodo.evszam2 = undefined;
             //az értékadás során, ebben az elágazásban vizsgálom, hogy az esemeny2_Element és evszam2_Element értéke üres string-e, és ha ez van, akkor ezeknek a változók undefined értéket kapnak, mivel fentebb, úgy írtam meg a renderelési logikát,hogy ha vagy az egyik vagy a másik értéke undefined ne fűzzön hozzon létre egy felesleges sort.
