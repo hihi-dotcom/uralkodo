@@ -59,7 +59,9 @@ const col3 = document.createElement(`col`);//létrehozom az utolsó col elemet, 
 colgroup.appendChild(col3);//hozzáfűzöm ezt is a colgroup elemhez
 col3.classList.add(`colored_column`); //ezt is ellátom a megfelelő osztálykijelölővel, hogy a stílus a feladatnak megfelelően megváltozzon
 
-
+/**
+ * 
+ */
 function generateForm(){ //létrehozom a generateForm függvényt, amelyben egyesével kigeneráljuk a korábbi html form alapján annak a sorait,hogy a végén képesek legyünk ismételten egy új objektumot hozzáadni a csodás táblázatunkba
     const form  = document.createElement(`form`); // létrehozok egy form HTML elemet
     form.id = `form`;// id-nek megadom neki a formot, ami az addEventListener miatt kulcsfontosságú hiszen enélkül nem tudnánk hozzáadni egy új uralkodót a táblázatunkhoz.
@@ -294,8 +296,8 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
             evszam2: Evszam2, // az új objektum evszam2 értéke az Evszam2 értéke lesz
         };
         if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){ //ha az újonnan létrehozott objektumunk evszam2 és esemeny2 értéke üres sztring akkor az értékük undefined lesz,mivel így fog működni megfelőlen az objektum hozzáadás
-            newUralkodo.esemeny2 = undefined;
-            newUralkodo.evszam2 = undefined;
+            newUralkodo.esemeny2 = undefined;//az újonnan létrehozott objektumunk esemeny2 tulajdonságának értékadás
+            newUralkodo.evszam2 = undefined; //az újonnan létrehozott objektumunk evszam2 tulajdonságának értékadás
             //az értékadás során, ebben az elágazásban vizsgálom, hogy az esemeny2_Element és evszam2_Element értéke üres string-e, és ha ez van, akkor ezeknek a változók undefined értéket kapnak, mivel fentebb, úgy írtam meg a renderelési logikát,hogy ha vagy az egyik vagy a másik értéke undefined ne fűzzön hozzon létre egy felesleges sort.
         };
         array.push(newUralkodo); // hozzáadom a tömbömhöz az újonnan deklarált objektumot 
@@ -309,6 +311,8 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
  * 
  * @param {HTMLElement} inputhtmlElem 
  * @param {string} errorUzenet 
+ * @returns {boolean}
+ *  visszaadunk egy error üzenetet az első bemeneti paraméter parentElementjében legelső error class-al ellátott elemében ha üres string az inputhtmlElem bemeneti paraméter értéke
  */
 function validateFormHTMLinputMezo(inputhtmlElem, errorUzenet){ //definiáljuk a validateFormHTMLinputMezo függvényt, ami két bemeneti paramétert vár egy inputhtmlElemet, ami egy HTMLElement típusú bemeneti paraméternek kell lennie, illetve egy error üzenetet, ami pedig egy string típus lesz
     let valid = true; //létrehozzuk a valid lokális változót true értékkel
@@ -332,6 +336,12 @@ function validateFormHTMLinputMezo(inputhtmlElem, errorUzenet){ //definiáljuk a
  * @param {HTMLElement} HTMlinput2 
  * @param {string} errorMessage 
  * @returns 
+ * két esetet vizsgálunk
+ * egy :
+ * az első bemeneti paraméterünk értéke üres sztring a másodiké nem, ilyenkor visszaadunk egy error messaget az első bemeneti parameterunk parentElementjében található legelső error class-al ellátott elemében
+ * 
+ * két:
+ * a második bemeneti paraméterünk értéke üres sztring az elsőé nem, ilyenkor visszaadunk egy error messaget a második bemeneti parameterunk parentElementjében található legelső error class-al ellátott elemében
  */
 function complexValidation(HTMlinput1, HTMlinput2, errorMessage){//definiáljuk a complexValidation függvényt ez három bemenetet vár kettő HTMlinputifieldet, aminek az értékeit vizsgáljuk és egy error messaget amit visszaad a documentben az error classal
     let valid = true; // deklarálom a valid változót, melynek célja hogy tároljuk a visszatérési értékünket különböző elágazások esetén, és a végén ezzel a változóval térünk vissza a függvény végén
