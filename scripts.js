@@ -6,31 +6,31 @@ document.body.appendChild(tabla); // a table elemet hozzáfűzöm a HTML dokumen
 tabla.appendChild(tablafej); // a thead elemet hozzáfűzöm a table elemhez
 tabla.appendChild(tablatest);// a table body elementet hozzáfűzöm a táblázatomhoz
 
-const formarray = [
+const formarray = [//létrehozom a formarrayt, ami formom egyes elemeinek az értékeit tárolja
     {
-        htmlFor: `uralkodo_nev`,
-        innerText: `Uralkodó neve: `,
-        type: `text`,
+        htmlFor: `uralkodo_nev`, // az első objektumom htmlFor tulajdonságának értékadása
+        innerText: `Uralkodó neve: `,// az első objektumom innerText tulajdonságának értékadása
+        type: `text`,// az első objektumom type tulajdonságának értékadása
     },
     {
-        htmlFor: `esemeny1`,
-        innerText: `Első esemény: `,
-        type: `text`,
+        htmlFor: `esemeny1`,// a második objektumom htmlFor tulajdonságának értékadása
+        innerText: `Első esemény: `,// a második objektumom innerText tulajdonságának értékadása
+        type: `text`,// a második objektumom type tulajdonságának értékadása
     },
     {
-        htmlFor: `evszam1`,
-        innerText: `Első esemény évszáma: `,
-        type: `text`,
+        htmlFor: `evszam1`,// a harmadik objektumom htmlFor tulajdonságának értékadása
+        innerText: `Első esemény évszáma: `,// a harmadik objektumom innerText tulajdonságának értékadása
+        type: `text`,// a harmadik objektumom type tulajdonságának értékadása
     },
     {
-        htmlFor: `esemeny2`,
-        innerText: `Második esemény: `,
-        type: `text`,
+        htmlFor: `esemeny2`,// a negyedik objektumom htmlFor tulajdonságának értékadása
+        innerText: `Második esemény: `,// a negyedik objektumom innerText tulajdonságának értékadása
+        type: `text`,// a negyedik objektumom type tulajdonságának értékadása
     },
     {
-        htmlFor: `evszam2`,
-        innerText: `Második esemény évszáma: `,
-        type: `text`,
+        htmlFor: `evszam2`,// a ötödik objektumom htmlFor tulajdonságának értékadása
+        innerText: `Második esemény évszáma: `,// a ötödik objektumom innerText tulajdonságának értékadása
+        type: `text`,// a ötödik objektumom type tulajdonságának értékadása
     }
 ];
 

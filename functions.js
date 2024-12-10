@@ -5,8 +5,8 @@ document.body.appendChild(form3); // a fentebb létrehozott form elemünket hozz
  * @param {Array} formarray
  * kigeneráljuk minden egyes sorát a HTML formnak a megadott form segítségével
  */
-function generateForm(formarray){ //létrehozom a generateForm függvényt, amelyben egyesével kigeneráljuk a korábbi html form alapján annak a sorait,hogy a végén képesek legyünk ismételten egy új objektumot hozzáadni a csodás táblázatunkba
-    
+function generateForm(formarray){ //létrehozom a generateForm függvényt, amelyben egy növekményes ciklus segítségével és a formarray segítségével kigeneráljuk a korábbi html form alapján annak a sorait,hogy a végén képesek legyünk ismételten egy új objektumot hozzáadni a csodás táblázatunkba
+//a ciklus során egy sort generálunk és az egyes HTMLELementek tulajdonságainak megadjuk a formarray tömbben lévő éppen aktuális objektumunk egyes tulajdonságainak értékeit    
     
     for(const jelenFelem of formarray){
         const div1  = document.createElement(`div`); //létrehozok egy div elemet ami a formom első sora lesz
@@ -37,89 +37,6 @@ function generateForm(formarray){ //létrehozom a generateForm függvényt, amel
     form3.appendChild(button); // hozzáfűzöm a gombot a formunkhoz
     // fontos a sorrend, mivel ha másképp lenne nem lennének a sorok megfelelő sorrendben és elcsúszna a táblázat.
 
-
-
-/*    const div2  = document.createElement(`div`);//létrehozok egy div elemet ami a formom második sora lesz
-    div2.classList.add(`field`);//hozzáfűzöm a field osztályt
-
-
-    const label2 = document.createElement(`label`);// létrehozok egy label elemet ismét
-    label2.htmlFor  = `esemeny1`;// a for attribútum értékének megadom az esemeny1-et
-    label2.innerText  = `Első esemény:`;// az Innertextje pedig az Első esemény: lett
-    div2.appendChild(label2);// ezt a labelt hozzáfűzöm a formom második sorához
-
-    
-    const input2  = document.createElement(`input`);//létrehozok egy input elemet
-    input2.type  = `text`;// ennek az inputnak típusként megadom a textet, tehát szövegként lesz kezelve amit beleírunk
-    input2.id  = `esemeny1`;//id-nek itt is megadtam az esemeny1-et
-    input2.name  = `esemeny1`;// namenek is
-    div2.appendChild(input2);// ezt az inputot hozzáfűzöm a formom második sorához
-    const div_error2 = document.createElement(`div`);//létrehozok egy div elemet ismét, ami a validációs üzenetek helye
-    div_error2.classList.add(`error`);  // ezt ellátom az error osztály kijelölővel
-    div2.appendChild(div_error2);// és ezt is hozzáfűzöm természetesen a form második sorához.
-
-    const div3  = document.createElement(`div`);//létrehozok egy div elemet ami a formom harmadik sora lesz
-    div3.classList.add(`field`);//ellátom a field osztállyal
-
-    const label3 = document.createElement(`label`);// létrehozok egy label elemet ismét
-    label3.htmlFor  = `evszam1`;// a for attribútum értékének megadom az evszam1-et
-    label3.innerText  = `Első esemény évszáma: `;// az Innertextje pedig az Első esemény évszáma: lett
-    div3.appendChild(label3);// ezt a labelt hozzáfűzöm a formom harmadik sorához
-
-    const input3  = document.createElement(`input`);//létrehozok egy input elemet megint
-    input3.type  = `text`;// ennek az inputnak típusként megadom a textet, tehát szövegként lesz kezelve amit beleírunk
-    input3.id  = `evszam1`;//id-nek itt megadtam az evszam1-et(fontos hogy egyezzen a label for tulajdonságával)
-    input3.name  = `evszam1`;// namenek is
-    div3.appendChild(input3);// ezt az inputot hozzáfűzöm a formom harmadik sorához
-    const div_error3 = document.createElement(`div`);//létrehozok egy div elemet ismét, ami a validációs üzenetek helye
-    div_error3.classList.add(`error`);  // ezt ellátom az error osztállyal
-    div3.appendChild(div_error3);// és ezt is hozzáfűzöm természetesen a form harmadik sorához.
-
-
-    const div4  = document.createElement(`div`);//létrehozok egy div elemet ami a formom negyedik sora lesz
-    div4.classList.add(`.field`);//ellátom a field osztállyal
-
-    const label4 = document.createElement(`label`);// létrehozok egy label elemet
-    label4.htmlFor  = `esemeny2`;// a for attribútum értékének megadom az esemeny2-t
-    label4.innerText  = `Második esemény: `;// az Innertextje pedig az Második esemény: lett
-    div4.appendChild(label4);// ezt a labelt hozzáfűzöm a formom negyedik sorához
-    
-    const input4  = document.createElement(`input`);//létrehozok egy input elemet a negyedik sorhoz
-    input4.type  = `text`;// ennek az inputnak típusként megadom a textet, tehát szövegként lesz kezelve amit beleírunk
-    input4.id  = `esemeny2`;//id-nek itt megadtam az esemeny2-t(fontos hogy egyezzen a label for tulajdonságával)
-    input4.name  = `esemeny2`;// namenek is
-    div4.appendChild(input4);// ezt az inputot hozzáfűzöm a formom negyedik sorához
-    const div_error4 = document.createElement(`div`);//létrehozok egy div elemet ismét, ami az error üzenetek helye
-    div_error4.classList.add(`error`);  
-    div4.appendChild(div_error4);// és ezt is hozzáfűzöm természetesen a form negyedik sorát tartalmazó div elemhez.
-
-    const div5  = document.createElement(`div`);//létrehozok egy div elemet ami a formom utolsó sora lesz
-    div5.classList.add(`.field`);//ellátom a field osztálykijelölővel
-
-
-    const label5 = document.createElement(`label`);// létrehozok egy label elemet
-    label5.htmlFor  = `evszam2`;// a for attribútum értékének megadom az evszam2-t
-    label5.innerText  = `Második esemény évszáma: `;// az Innertextje pedig az Második esemény évszáma: lett
-    div5.appendChild(label5);// ezt a labelt hozzáfűzöm a formom ötödik sorához
-    
-    
-    const input5  = document.createElement(`input`);//létrehozok egy input elemet a ötödik sorhoz
-    input5.type  = `text`;// ennek az inputnak típusként megadom a textet, tehát szövegként lesz kezelve amit beleírunk
-    input5.id  = `evszam2`;//id-nek itt  megadtam az evszam2-t(fontos hogy egyezzen a label for tulajdonságával)
-    input5.name  = `evszam2`;// namenek is
-    div5.appendChild(input5);// ezt az inputot hozzáfűzöm a formom ötödik sorához
-    const div_error5 = document.createElement(`div`);//létrehozok egy div elemet ismét, ami az error üzenetek helye lesz
-    div_error5.classList.add(`error`); // ezt ellátom az error osztállyal
-    div5.appendChild(div_error5);// és ezt is hozzáfűzöm természetesen a form ötödik sorát tartalmazó div elemhez. 
-
-    
-    
-   
-    form.appendChild(div2); // hozzáfűzöm a második sort a formhoz
-    form.appendChild(div3); // hozzáfűzöm az harmadik sort a formhoz
-    form.appendChild(div4); // hozzáfűzöm az negyedik sort a formhoz 
-    form.appendChild(div5); // hozzáfűzöm az ötödik sort a formhoz
-  */
 };
 
 
