@@ -1,34 +1,45 @@
+const form3  = document.createElement(`form`); // létrehozok egy form HTML elemet
+form3.id = `form`;// id-nek megadom neki a formot, ami az addEventListener miatt kulcsfontosságú hiszen enélkül nem tudnánk hozzáadni egy új uralkodót a táblázatunkhoz.
+document.body.appendChild(form3); // a fentebb létrehozott form elemünket hozzáfűzzük a HTML dokumentumunk törzséhez
 /**
+ * @param {Array} formarray
  * kigeneráljuk minden egyes sorát a HTML formnak a megadott form segítségével
  */
-function generateForm(){ //létrehozom a generateForm függvényt, amelyben egyesével kigeneráljuk a korábbi html form alapján annak a sorait,hogy a végén képesek legyünk ismételten egy új objektumot hozzáadni a csodás táblázatunkba
-    const form  = document.createElement(`form`); // létrehozok egy form HTML elemet
-    form.id = `form`;// id-nek megadom neki a formot, ami az addEventListener miatt kulcsfontosságú hiszen enélkül nem tudnánk hozzáadni egy új uralkodót a táblázatunkhoz.
-    document.body.appendChild(form); // a fentebb létrehozott form elemünket hozzáfűzzük a HTML dokumentumunk törzséhez
+function generateForm(formarray){ //létrehozom a generateForm függvényt, amelyben egyesével kigeneráljuk a korábbi html form alapján annak a sorait,hogy a végén képesek legyünk ismételten egy új objektumot hozzáadni a csodás táblázatunkba
     
+    
+    for(const jelenFelem of formarray){
+        const div1  = document.createElement(`div`); //létrehozok egy div elemet ami a formom első sora lesz
+        div1.classList.add(`field`); //hozzáfűzöm a field osztályt
+    
+        const label1 = document.createElement(`label`); // létrehozok egy label elemet
+        label1.htmlFor  = jelenFelem.htmlFor; // a for attribútum értékének megadom az uralkodo_nevet
+        label1.innerText  = jelenFelem.innerText;// az Innertextje pedig az Uralkodó neve: lett
+        div1.appendChild(label1);// ezt a labelt hozzáfűzöm a div1-hez ami  a formom első sora
+    
+    
+        const input1  = document.createElement(`input`);//létrehozok egy input elemet
+        input1.type  = jelenFelem.type;// ennek az inputnak típusként megadom a textet, tehát szövegként lesz kezelve amit beleírunk
+        input1.id  = jelenFelem.htmlFor;//id-nek itt is megadtam az uralkodo_nevet
+        input1.name  = jelenFelem.htmlFor;// namenek is
+        div1.appendChild(input1);// ezt az inputot hozzáfűzöm a div1-hez ami a formom első sora
+    
+        const div_error1 = document.createElement(`div`);//létrehozok egy div elemet ismét, ami a validációs üzenetek helye
+        div_error1.classList.add(`error`);  // ezt ellátom az error osztály kijelölővel
+        div1.appendChild(div_error1);// és ezt is hozzáfűzöm természetesen a form első sorához.
+        form3.appendChild(div1); // hozzáfűzöm az első sort a formhoz
+    };
 
-    const div1  = document.createElement(`div`); //létrehozok egy div elemet ami a formom első sora lesz
-    div1.classList.add(`field`); //hozzáfűzöm a field osztályt
+    const button = document.createElement(`button`); //létrehozok egy gombot melynek a segítségével tudjuk majd a táblázathoz hozzáadni 
+    button.type = `submit`; // ennek a gombnak beállítom a submit típust, ez fontos mivel a form addeventListenerje a submitra hallgat
+    button.innerText = `Hozzáadás`; // innerTextnek pedig megkapta a Hozzáadást, mint ahogy korábban a HTML oldalon volt.
 
-    const label1 = document.createElement(`label`); // létrehozok egy label elemet
-    label1.htmlFor  = `uralkodo_nev`; // a for attribútum értékének megadom az uralkodo_nevet
-    label1.innerText  = `Uralkodó neve: `;// az Innertextje pedig az Uralkodó neve: lett
-    div1.appendChild(label1);// ezt a labelt hozzáfűzöm a div1-hez ami  a formom első sora
-
-
-    const input1  = document.createElement(`input`);//létrehozok egy input elemet
-    input1.type  = `text`;// ennek az inputnak típusként megadom a textet, tehát szövegként lesz kezelve amit beleírunk
-    input1.id  = `uralkodo_nev`;//id-nek itt is megadtam az uralkodo_nevet
-    input1.name  = `uralkodo_nev`;// namenek is
-    div1.appendChild(input1);// ezt az inputot hozzáfűzöm a div1-hez ami a formom első sora
-
-    const div_error1 = document.createElement(`div`);//létrehozok egy div elemet ismét, ami a validációs üzenetek helye
-    div_error1.classList.add(`error`);  // ezt ellátom az error osztály kijelölővel
-    div1.appendChild(div_error1);// és ezt is hozzáfűzöm természetesen a form első sorához.
+    form3.appendChild(button); // hozzáfűzöm a gombot a formunkhoz
+    // fontos a sorrend, mivel ha másképp lenne nem lennének a sorok megfelelő sorrendben és elcsúszna a táblázat.
 
 
 
-    const div2  = document.createElement(`div`);//létrehozok egy div elemet ami a formom második sora lesz
+/*    const div2  = document.createElement(`div`);//létrehozok egy div elemet ami a formom második sora lesz
     div2.classList.add(`field`);//hozzáfűzöm a field osztályt
 
 
@@ -101,20 +112,17 @@ function generateForm(){ //létrehozom a generateForm függvényt, amelyben egye
     div_error5.classList.add(`error`); // ezt ellátom az error osztállyal
     div5.appendChild(div_error5);// és ezt is hozzáfűzöm természetesen a form ötödik sorát tartalmazó div elemhez. 
 
-    const button = document.createElement(`button`); //létrehozok egy gombot melynek a segítségével tudjuk majd a táblázathoz hozzáadni 
-    button.type = `submit`; // ennek a gombnak beállítom a submit típust, ez fontos mivel a form addeventListenerje a submitra hallgat
-    button.innerText = `Hozzáadás`; // innerTextnek pedig megkapta a Hozzáadást, mint ahogy korábban a HTML oldalon volt.
     
-    form.appendChild(div1); // hozzáfűzöm az első sort a formhoz
+    
+   
     form.appendChild(div2); // hozzáfűzöm a második sort a formhoz
     form.appendChild(div3); // hozzáfűzöm az harmadik sort a formhoz
     form.appendChild(div4); // hozzáfűzöm az negyedik sort a formhoz 
     form.appendChild(div5); // hozzáfűzöm az ötödik sort a formhoz
-    form.appendChild(button); // hozzáfűzöm a gombot a formunkhoz
-    // fontos a sorrend, mivel ha másképp lenne nem lennének a sorok megfelelő sorrendben és elcsúszna a táblázat.
+  */
 };
 
-generateForm(); //meghívom a generateForm függvényt
+
 
 
 
@@ -161,7 +169,7 @@ function renderTabla(array){// definiálom a renderTabla függvényt, itt a füg
     }
 };
 
-renderTabla(array);//meghívom a renderTabla függvényt
+
 
 
 

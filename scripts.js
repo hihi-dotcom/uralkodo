@@ -6,7 +6,33 @@ document.body.appendChild(tabla); // a table elemet hozzáfűzöm a HTML dokumen
 tabla.appendChild(tablafej); // a thead elemet hozzáfűzöm a table elemhez
 tabla.appendChild(tablatest);// a table body elementet hozzáfűzöm a táblázatomhoz
 
-
+const formarray = [
+    {
+        htmlFor: `uralkodo_nev`,
+        innerText: `Uralkodó neve: `,
+        type: `text`,
+    },
+    {
+        htmlFor: `esemeny1`,
+        innerText: `Első esemény: `,
+        type: `text`,
+    },
+    {
+        htmlFor: `evszam1`,
+        innerText: `Első esemény évszáma: `,
+        type: `text`,
+    },
+    {
+        htmlFor: `esemeny2`,
+        innerText: `Második esemény: `,
+        type: `text`,
+    },
+    {
+        htmlFor: `evszam2`,
+        innerText: `Második esemény évszáma: `,
+        type: `text`,
+    }
+];
 
 const array = [
     { // az array tömb első elemének létrehozása
@@ -60,8 +86,8 @@ colgroup.appendChild(col3);//hozzáfűzöm ezt is a colgroup elemhez
 col3.classList.add(`colored_column`); //ezt is ellátom a megfelelő osztálykijelölővel, hogy a stílus a feladatnak megfelelően megváltozzon
 
 
-
-
+generateForm(formarray); //meghívom a generateForm függvényt
+renderTabla(array);//meghívom a renderTabla függvényt
 
 const fejcellak = { //létrehozom a fejcellak objektumot, ami a fejléc értékeit fogja tartalmazni(öszetett objektum)
     fejcella1label: `Uralkodó`, //a fejcellak fejcella1label tulajdonságának értéket adunk(objektum tulajdonság, aminek string értéket adunk)
