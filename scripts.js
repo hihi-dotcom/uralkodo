@@ -82,6 +82,7 @@ const fejcella3 = document.createElement(`th`);//létrehozok egy th elemet ami a
 fejrow.appendChild(fejcella3);//hozzáfűzöm ezt a th elemet a fejléc sorához
 fejcella3.innerHTML = fejcellak.fejcella3label; // a cella tartalma a fejcellak objektum  fejcella3label tulajdonságának értéke lesz
 
+
 /**
  * 
  * @param {Array} array 
@@ -213,7 +214,7 @@ function validateFormHTMLinputMezo(inputhtmlElem, errorUzenet){ //definiáljuk a
  * @param {string} errorMessage 
  * @returns 
  */
-function complexValidation(HTMlinput1, HTMlinput2, errorMessage){//definiáljuk a complexValidation függvényt ez három bemenetet vár kettő HTMlinputifieldet, aminek az értékeit vizsgáljuk és egy error messaget amit visszaad a documentben az error classal ellátott divbe
+function complexValidation(HTMlinput1, HTMlinput2, errorMessage){//definiáljuk a complexValidation függvényt ez három bemenetet vár kettő HTMlinputifieldet, aminek az értékeit vizsgáljuk és egy error messaget amit visszaad a documentben az error classal
     let valid = true;
     if(HTMlinput1.value === `` && HTMlinput2.value !== ``){ // feltételes validáció, nem minden esetben fut le, de ha a második évszám üres és a második esemény nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
         const szuloElem = HTMlinput1.parentElement;//elrakjuk egy lokális változóba a Második évszám beviteli mezőjének a parentElement tulajdonságát, ami most a div class="field"
