@@ -87,7 +87,7 @@ fejcella3.innerHTML = fejcellak.fejcella3label; // a cella tartalma a fejcellak 
  * 
  * @param {Array} array 
  */
-function renderTabla(array){// definiálom a renderTabla függvényt, itt a függvényünk bemeneti paraméterként a tömbünket kapja meg, amivel később dolgozik is, és ezt várja minden egyes újabb függvényhívásakor is.
+function renderTabla(array){// definiálom a renderTabla függvényt, itt a függvényünk bemeneti paraméterként a tömbünket kapja meg, amivel később dolgozik is, és ezt várja minden egyes újabb függvényhívásakor is. átalakítható lenne,ha a sokszor ismételt lépéseket is kiszerveznénk több függvénybe akár.
    
     for(const jelenElem of array){//végig iterálunk a tömbön egy növekményes for ciklussal
         //a táblázat törzsének sorai
