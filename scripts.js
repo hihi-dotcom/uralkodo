@@ -204,6 +204,7 @@ fejcella3.innerHTML = fejcellak.fejcella3label; // a cella tartalma a fejcellak 
 /**
  * 
  * @param {Array} array 
+ * Végig iterálunk a fentebb létrehozott tömbön és közben létrehozunk egy új sort, ami a táblázat egy sora lesz, annyi sor lesz, ahány objektum van a a tömbünkben ezt hozzáfűzük a táblázattörzséhez és a sor egyes celláinak InnerHTML-je az éppen aktuális objektum egyik tulajdonsága lesz.Van egy elágazás is, mivel néhány objektum nem ugyanolyan mint a többi, ha az egyik objektumnak több tulajdonsága(esemeny2, evszam2) van a többinél egy új sort fűzünk hozzá a táblázatunkhoz és az először létrehozott sor első eleme az az alatti táblázattal lesz egybe vonva hiszen, ezek is az aktuális objektumnak a tulajdonságai lehetnek
  */
 function renderTabla(array){// definiálom a renderTabla függvényt, itt a függvényünk bemeneti paraméterként a tömbünket kapja meg, amivel később dolgozik is, és ezt várja minden egyes újabb függvényhívásakor is. átalakítható lenne,ha a sokszor ismételt lépéseket is kiszerveznénk több függvénybe akár.
    
@@ -225,7 +226,7 @@ function renderTabla(array){// definiálom a renderTabla függvényt, itt a füg
         sorEvszam.innerHTML = jelenElem.evszam;// a cella tartalma az éppen aktuális elem evszam tulajdonsága lesz
         sor.appendChild(sorEvszam);// Rögtön hozzáfűzöm ezt az elemet a sorhoz.
 
-        if(jelenElem.esemeny2 !== undefined || jelenElem.evszam2 !== undefined)
+        if(jelenElem.esemeny2 !== undefined || jelenElem.evszam2 !== undefined) //vizsgáljuk hogy az éppen aktuális elem a tömbünkből rendelkezik-e esemeny2 illetve evszam2 tulajdonságokkal, ha igen akkor hozzáfűzzük a plusz egy sort és lefut az elágazásban található kód
         {//ha az aktuális objektumnak nincs esemeny2 és evszam2 tulajdonsága akkor az elágazáson belüli kód fut le
             sorUralkodoName.rowSpan = 2;// a táblázat első cellájának rowSpan tulajdonságát 2-re állítjuk
             const sor2 = document.createElement(`tr`); // létrehozok még egy tableRow elementet a második eseménynek és évszámnak(HTMLelement)
@@ -292,7 +293,7 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
             esemeny2: Esemeny2, // az új objektum esemeny2 értéke az Esemeny2 lesz
             evszam2: Evszam2, // az új objektum evszam2 értéke az Evszam2 értéke lesz
         };
-        if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){
+        if(newUralkodo.esemeny2 === `` || newUralkodo.evszam2 === ``){ 
             newUralkodo.esemeny2 = undefined;
             newUralkodo.evszam2 = undefined;
             //az értékadás során, ebben az elágazásban vizsgálom, hogy az esemeny2_Element és evszam2_Element értéke üres string-e, és ha ez van, akkor ezeknek a változók undefined értéket kapnak, mivel fentebb, úgy írtam meg a renderelési logikát,hogy ha vagy az egyik vagy a másik értéke undefined ne fűzzön hozzon létre egy felesleges sort.
@@ -300,7 +301,7 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
         array.push(newUralkodo); // hozzáadom a tömbömhöz az újonnan deklarált objektumot 
         tablatest.innerHTML = ``; // a táblázatom tartalmát egy üres stringgel teszem egyenlővé, hogy törlödjön a tábla és ne renderelődjenek újra a már meglévő elemek
         renderTabla(array); // újra meghívom a renderTabla függvényt
-        ezaForm.reset();    
+        ezaForm.reset();    // a formunk reset metódusát meghívva kitöröljük az értékeket a form input mezőinől, miután feltöltöttük az adatokat a táblázatunkba (beépített metódus)
     };
 });
   
@@ -333,7 +334,7 @@ function validateFormHTMLinputMezo(inputhtmlElem, errorUzenet){ //definiáljuk a
  * @returns 
  */
 function complexValidation(HTMlinput1, HTMlinput2, errorMessage){//definiáljuk a complexValidation függvényt ez három bemenetet vár kettő HTMlinputifieldet, aminek az értékeit vizsgáljuk és egy error messaget amit visszaad a documentben az error classal
-    let valid = true;
+    let valid = true; // deklarálom a valid változót, melynek célja hogy tároljuk a visszatérési értékünket különböző elágazások esetén, és a végén ezzel a változóval térünk vissza a függvény végén
     if(HTMlinput1.value === `` && HTMlinput2.value !== ``){ // feltételes validáció, nem minden esetben fut le, de ha a második évszám üres és a második esemény nem az lefut, ugyanakkor, ha egyik sincs kitöltve az objektumunk felkerül a táblázatunkba
         const szuloElem = HTMlinput1.parentElement;//elrakjuk egy lokális változóba a Második évszám beviteli mezőjének a parentElement tulajdonságát, ami most a div class="field"
         const errorHely = szuloElem.querySelector('.error');// ebben a parentElementben megkeressük az első olyan elemet ami rendelkezik az error classal
@@ -354,7 +355,7 @@ function complexValidation(HTMlinput1, HTMlinput2, errorMessage){//definiáljuk 
         valid = false; //a valid változó értékét természetesen itt is hamisra állítjuk
 
     };
-    return valid;
+    return valid; //visszatérünk a valid változónkkal ez elengedhetetlen hiszen, enélkül nem működne a validációs elágazás, amit a feltöltésnél írtunk hiszen nem kapna vissza semmit.
 };
 
     
