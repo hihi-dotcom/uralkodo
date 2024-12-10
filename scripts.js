@@ -60,7 +60,7 @@ colgroup.appendChild(col3);//hozzáfűzöm ezt is a colgroup elemhez
 col3.classList.add(`colored_column`); //ezt is ellátom a megfelelő osztálykijelölővel, hogy a stílus a feladatnak megfelelően megváltozzon
 
 /**
- * 
+ * kigeneráljuk minden egyes sorát a HTML formnak a megadott form segítségével
  */
 function generateForm(){ //létrehozom a generateForm függvényt, amelyben egyesével kigeneráljuk a korábbi html form alapján annak a sorait,hogy a végén képesek legyünk ismételten egy új objektumot hozzáadni a csodás táblázatunkba
     const form  = document.createElement(`form`); // létrehozok egy form HTML elemet
@@ -312,7 +312,7 @@ form.addEventListener('submit', function(e){//deklarálom a fentebb elkért HTML
  * @param {HTMLElement} inputhtmlElem 
  * @param {string} errorUzenet 
  * @returns {boolean}
- *  visszaadunk egy error üzenetet az első bemeneti paraméter parentElementjében legelső error class-al ellátott elemében ha üres string az inputhtmlElem bemeneti paraméter értéke
+ *  visszaadunk egy error üzenetet az első bemeneti paraméter parentElementjében legelső error class-al ellátott elemében   ha üres string az inputhtmlElem bemeneti paraméter értéke a visszatérési értékünket a valid változóban tároljuk ami boolean típusú(fontos a visszatérés a validáció miatt az addeventlistenerben)
  */
 function validateFormHTMLinputMezo(inputhtmlElem, errorUzenet){ //definiáljuk a validateFormHTMLinputMezo függvényt, ami két bemeneti paramétert vár egy inputhtmlElemet, ami egy HTMLElement típusú bemeneti paraméternek kell lennie, illetve egy error üzenetet, ami pedig egy string típus lesz
     let valid = true; //létrehozzuk a valid lokális változót true értékkel
@@ -342,6 +342,8 @@ function validateFormHTMLinputMezo(inputhtmlElem, errorUzenet){ //definiáljuk a
  * 
  * két:
  * a második bemeneti paraméterünk értéke üres sztring az elsőé nem, ilyenkor visszaadunk egy error messaget a második bemeneti parameterunk parentElementjében található legelső error class-al ellátott elemében
+ * 
+ * ismételten egy booleant küldünk vissza, ez a valid változó és ebben tároljuk az egyes esetek esetén a visszatérési értéket(fontos a visszatérés a validáció miatt az addeventlistenerben)
  */
 function complexValidation(HTMlinput1, HTMlinput2, errorMessage){//definiáljuk a complexValidation függvényt ez három bemenetet vár kettő HTMlinputifieldet, aminek az értékeit vizsgáljuk és egy error messaget amit visszaad a documentben az error classal
     let valid = true; // deklarálom a valid változót, melynek célja hogy tároljuk a visszatérési értékünket különböző elágazások esetén, és a végén ezzel a változóval térünk vissza a függvény végén
