@@ -4,9 +4,10 @@ document.body.appendChild(form3); // a fentebb létrehozott form elemünket hozz
 /**
  * @param {Array} formarray
  * kigeneráljuk minden egyes sorát a HTML formnak a megadott form segítségével
+ * létrehozom a generateForm függvényt, amelyben egy növekményes ciklus segítségével és a formarray segítségével kigeneráljuk a korábbi html form   alapján annak a sorait,hogy a végén képesek legyünk ismételten egy új objektumot hozzáadni a csodás táblázatunkba
+    a ciklus során egy sort generálunk és az egyes HTMLELementek tulajdonságainak megadjuk a formarray tömbben lévő éppen aktuális objektumunk egyes tulajdonságainak értékeit
  */
-function generateForm(formarray){ //létrehozom a generateForm függvényt, amelyben egy növekményes ciklus segítségével és a formarray segítségével kigeneráljuk a korábbi html form alapján annak a sorait,hogy a végén képesek legyünk ismételten egy új objektumot hozzáadni a csodás táblázatunkba
-//a ciklus során egy sort generálunk és az egyes HTMLELementek tulajdonságainak megadjuk a formarray tömbben lévő éppen aktuális objektumunk egyes tulajdonságainak értékeit    
+function generateForm(formarray){     
     
     for(const jelenFelem of formarray){
         const div1  = document.createElement(`div`); //létrehozok egy div elemet ami a formom első sora lesz
@@ -38,12 +39,6 @@ function generateForm(formarray){ //létrehozom a generateForm függvényt, amel
     // fontos a sorrend, mivel ha másképp lenne nem lennének a sorok megfelelő sorrendben és elcsúszna a táblázat.
 
 };
-
-
-
-
-
-
 
 /**
  * 
